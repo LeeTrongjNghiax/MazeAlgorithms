@@ -23,7 +23,8 @@ loop = () => {
       drawWallFollowerAlgTrace(ctx, trace[i][j], traceSide, j, i, maze.pS, maze.wS, "yellow")
     }  
   }
-  player.goOneStep(s.solutionString);
+  if (s != null)
+    player.goOneStep(s.solutionString);
   sleep(10);
   
   player.draw(ctx, maze.wS, maze.pS);

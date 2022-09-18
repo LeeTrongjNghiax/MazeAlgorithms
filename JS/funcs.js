@@ -102,121 +102,124 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
     case "R": y1 = signChanger * -1; x2 =  1; y3 = signChanger     ; break;
     case "L": y1 = signChanger     ; x2 = -1; y3 = signChanger * -1; break;
   }
-  switch (p.pointTo) {
-    case "U": 
-      switch (direction) {
-        case "L":
-          move = ["5", "14", "15", "8", "0"];
-          rotateMove = ["5", "14", "6"];
-          inverseRotateMove = ["5", "14", "15", "8", "9", "10", "2"];
-          doubleRotateMove = ["5", "14", "15", "8", "9", "10", "11", "12", "4"];
-          break;
-        case "R":
-          move = ["4", "12", "11", "10", "1"];
-          rotateMove = ["4", "12", "3"];
-          inverseRotateMove = ["4", "12", "11", "10", "9", "8", "7"];
-          doubleRotateMove = ["4", "12", "11", "10", "9", "8", "15", "14", "5"];
-          break;
-      }
-      break;
-    case "D": 
-      switch (direction) {
-        case "L":
-          move = ["1", "10", "11", "12", "4"];
-          rotateMove = ["1", "10", "2"];
-          inverseRotateMove = ["1", "10", "11", "12", "13", "14", "6"];
-          doubleRotateMove = ["1", "10", "11", "12", "13", "14", "15", "8", "0"];
-          break;
-        case "R":
-          move = ["0", "8", "15", "14", "5"];
-          rotateMove = ["0", "7", "8"];
-          inverseRotateMove = ["0", "8", "15", "14", "13", "12", "3"];
-          doubleRotateMove = ["0", "8", "15", "14", "13", "12", "11", "10", "1"];
-          break;
-      }
-      break;
-    case "R": 
-      switch (direction) {
-        case "L":
-          move = ["7", "8", "9", "10", "2"];
-          rotateMove = ["7", "8", "0"];
-          inverseRotateMove = ["7", "8", "9", "10", "11", "12", "4"];
-          doubleRotateMove = ["7", "8", "9", "10", "11", "12", "13", "14", "6"];
-          break;
-        case "R":
-          move = ["6", "14", "13", "12", "3"];
-          rotateMove = ["6", "14", "5"];
-          inverseRotateMove = ["6", "14", "13", "12", "11", "10", "1"];
-          doubleRotateMove = ["6", "14", "13", "12", "11", "10", "9", "8", "7"];
-          break;
-      }
-      break;
-    case "L": 
-      switch (direction) {
-        case "L":
-          move = ["3", "12", "13", "14", "6"];
-          rotateMove = ["3", "12", "4"];
-          inverseRotateMove = ["3", "12", "13", "14", "15", "8", "0"];
-          doubleRotateMove = ["3", "12", "13", "14", "15", "8", "9", "10", "2"];
-          break;
-        case "R":
-          move = ["2", "10", "9", "8", "7"];
-          rotateMove = ["2", "10", "1"];
-          inverseRotateMove = ["2", "10", "9", "8", "15", "14", "5"];
-          doubleRotateMove = ["2", "10", "9", "8", "15", "14", "13", "12", "3"];
-          break;
-      }
-      break;
-  }
-  if ( content[p.positions.y + y1][p.positions.x + x1] != 0 ) {
-    trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], rotateMove);
-    p.rotate(direction);
-    p.move();
-    return {
-      positions: {
-        x: p.positions.x,
-        y: p.positions.y,
-      }, 
-      solutionString: `${direction}M`
-    };
-  } else {
-    if ( content[p.positions.y + y2][p.positions.x + x2] != 0 ) {
-      trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], move);
+  if ( content[p.positions.y][p.positions.x] != E ) {
+    switch (p.pointTo) {
+      case "U": 
+        switch (direction) {
+          case "L":
+            move = ["5", "14", "15", "8", "0"];
+            rotateMove = ["5", "14", "6"];
+            inverseRotateMove = ["5", "14", "15", "8", "9", "10", "2"];
+            doubleRotateMove = ["5", "14", "15", "8", "9", "10", "11", "12", "4"];
+            break;
+          case "R":
+            move = ["4", "12", "11", "10", "1"];
+            rotateMove = ["4", "12", "3"];
+            inverseRotateMove = ["4", "12", "11", "10", "9", "8", "7"];
+            doubleRotateMove = ["4", "12", "11", "10", "9", "8", "15", "14", "5"];
+            break;
+        }
+        break;
+      case "D": 
+        switch (direction) {
+          case "L":
+            move = ["1", "10", "11", "12", "4"];
+            rotateMove = ["1", "10", "2"];
+            inverseRotateMove = ["1", "10", "11", "12", "13", "14", "6"];
+            doubleRotateMove = ["1", "10", "11", "12", "13", "14", "15", "8", "0"];
+            break;
+          case "R":
+            move = ["0", "8", "15", "14", "5"];
+            rotateMove = ["0", "7", "8"];
+            inverseRotateMove = ["0", "8", "15", "14", "13", "12", "3"];
+            doubleRotateMove = ["0", "8", "15", "14", "13", "12", "11", "10", "1"];
+            break;
+        }
+        break;
+      case "R": 
+        switch (direction) {
+          case "L":
+            move = ["7", "8", "9", "10", "2"];
+            rotateMove = ["7", "8", "0"];
+            inverseRotateMove = ["7", "8", "9", "10", "11", "12", "4"];
+            doubleRotateMove = ["7", "8", "9", "10", "11", "12", "13", "14", "6"];
+            break;
+          case "R":
+            move = ["6", "14", "13", "12", "3"];
+            rotateMove = ["6", "14", "5"];
+            inverseRotateMove = ["6", "14", "13", "12", "11", "10", "1"];
+            doubleRotateMove = ["6", "14", "13", "12", "11", "10", "9", "8", "7"];
+            break;
+        }
+        break;
+      case "L": 
+        switch (direction) {
+          case "L":
+            move = ["3", "12", "13", "14", "6"];
+            rotateMove = ["3", "12", "4"];
+            inverseRotateMove = ["3", "12", "13", "14", "15", "8", "0"];
+            doubleRotateMove = ["3", "12", "13", "14", "15", "8", "9", "10", "2"];
+            break;
+          case "R":
+            move = ["2", "10", "9", "8", "7"];
+            rotateMove = ["2", "10", "1"];
+            inverseRotateMove = ["2", "10", "9", "8", "15", "14", "5"];
+            doubleRotateMove = ["2", "10", "9", "8", "15", "14", "13", "12", "3"];
+            break;
+        }
+        break;
+    }
+    if ( content[p.positions.y + y1][p.positions.x + x1] != 0 ) {
+      trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], rotateMove);
+      p.rotate(direction);
       p.move();
       return {
         positions: {
           x: p.positions.x,
           y: p.positions.y,
         }, 
-        solutionString: `M`
+        solutionString: `${direction}M`
       };
-    } else { 
-      if ( content[p.positions.y + y3][p.positions.x + x3] != 0 ) {
-        trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], inverseRotateMove);
-        p.rotate(oppositeDirectionOf(direction));
+    } else {
+      if ( content[p.positions.y + y2][p.positions.x + x2] != 0 ) {
+        trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], move);
         p.move();
         return {
           positions: {
             x: p.positions.x,
             y: p.positions.y,
           }, 
-          solutionString: `${oppositeDirectionOf(direction)}M`
+          solutionString: `M`
         };
-      } else {
-        trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], doubleRotateMove);
-        p.rotate(direction);
-        p.rotate(direction);
-        p.move();
-        return {
-          positions: {
-            x: p.positions.x,
-            y: p.positions.y,
-          }, 
-          solutionString: `${direction}${direction}M`
-        };
+      } else { 
+        if ( content[p.positions.y + y3][p.positions.x + x3] != 0 ) {
+          trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], inverseRotateMove);
+          p.rotate(oppositeDirectionOf(direction));
+          p.move();
+          return {
+            positions: {
+              x: p.positions.x,
+              y: p.positions.y,
+            }, 
+            solutionString: `${oppositeDirectionOf(direction)}M`
+          };
+        } else {
+          trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], doubleRotateMove);
+          p.rotate(direction);
+          p.rotate(direction);
+          p.move();
+          return {
+            positions: {
+              x: p.positions.x,
+              y: p.positions.y,
+            }, 
+            solutionString: `${direction}${direction}M`
+          };
+        }
       }
     }
   }
+  
 }
 
 drawWallFollowerAlgTrace = (ctx, traceString, traceSide, x, y, pS, wS, color) => {

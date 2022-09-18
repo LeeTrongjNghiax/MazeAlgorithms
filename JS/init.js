@@ -208,10 +208,11 @@ let maze = new Maze(
   cvSide / (16 * 2.65), cvSide / (16 * 2.65),
   // 30, 10,
   {
-    B: "#303030",
+    B: "black",
+    // B: "",
     S: "green",
-    E: "red",
-    P: "#090909"
+    E: "blue",
+    P: "#202020"
   },
 )
 
@@ -229,7 +230,18 @@ let player = new Player(
   }, 
   start.pointTo, 
   10, 
-  "blue"
+  "red"
+);
+
+let player2 = new Player(
+  maze.wS * 0.75, 
+  {
+    x: maze.getPosition(S).x, 
+    y: maze.getPosition(S).y
+  }, 
+  start.pointTo, 
+  10, 
+  "orange"
 );
 
 let interval = 0;
@@ -237,13 +249,20 @@ let pjTimeOut;
 let pjSpeed = 500;
 
 let traceSide = (maze.pS / 3) / 3 * 1;
+
 let trace = [];
 for (let i = 0; i < maze.content.length; i++) {
   trace[i] = [];
-}
-for (let i = 0; i < maze.content.length; i++) {
   for (let j = 0; j < maze.content[i].length; j++) {
-    trace[j][i] = '0000000000000000';
+    trace[i][j] = '0000000000000000';
+  }
+}
+
+let trace2 = [];
+for (let i = 0; i < maze.content.length; i++) {
+  trace2[i] = [];
+  for (let j = 0; j < maze.content[i].length; j++) {
+    trace2[i][j] = '0000000000000000';
   }
 }
 

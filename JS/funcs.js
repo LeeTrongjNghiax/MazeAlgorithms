@@ -23,7 +23,7 @@ String.prototype.replaceAt = function(index, replacement) {
   return this.substring(0, index) + replacement + this.substring(index + replacement.length);
 }
 
-function unique(a, fn) {
+unique = (a, fn) => {
   if (a.length === 0 || a.length === 1) {
     return a;
   }
@@ -39,6 +39,14 @@ function unique(a, fn) {
     }
   }
   return a;
+}
+
+oppositeDirectionOf = direction => {
+  if (direction == "U") return "D";
+  if (direction == "D") return "U";
+  if (direction == "R") return "L";
+  if (direction == "L") return "R";
+  return null;
 }
 
 // Need Fix
@@ -160,7 +168,7 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
       }
       break;
   }
-  if ( content[p.positions.y + y1][p.positions.x + x1] != 0 && content[p.positions.y + y1][p.positions.x + x1] != 2 ) {
+  if ( content[p.positions.y + y1][p.positions.x + x1] != 0 ) {
     trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], rotateMove);
     p.rotate(direction);
     p.move();
@@ -172,7 +180,7 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
       solutionString: `${direction}M`
     };
   } else {
-    if ( content[p.positions.y + y2][p.positions.x + x2] != 0 && content[p.positions.y + y2][p.positions.x + x2] != 2) {
+    if ( content[p.positions.y + y2][p.positions.x + x2] != 0 ) {
       trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], move);
       p.move();
       return {
@@ -183,16 +191,16 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
         solutionString: `M`
       };
     } else { 
-      if ( content[p.positions.y + y3][p.positions.x + x3] != 0 && content[p.positions.y + y3][p.positions.x + x3] != 2 ) {
+      if ( content[p.positions.y + y3][p.positions.x + x3] != 0 ) {
         trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], inverseRotateMove);
-        p.rotate(direction == "L" ? "R" : "L");
+        p.rotate(oppositeDirectionOf(direction));
         p.move();
         return {
           positions: {
             x: p.positions.x,
             y: p.positions.y,
           }, 
-          solutionString: `${direction == "L" ? "R" : "L"}M`
+          solutionString: `${oppositeDirectionOf(direction)}M`
         };
       } else {
         trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], doubleRotateMove);
@@ -330,7 +338,7 @@ changeTraceString = (traceString, positions) => {
   for (let i = 0; i < positions.length; i++) {
     traceString = traceString.replaceAt(parseInt(positions[i]), "1");
   }
-  return traceString
+  return traceString;
 }
 
 primAlgMazeGenerator = size => {
@@ -344,9 +352,9 @@ primAlgMazeGenerator = size => {
   for (let i = 0; i < size.y; i++) {
     maze[i] = [];
     for (let j = 0; j < size.x; j++) {
-      if (i == 0 || i == size.y - 1 || j == 0 || j == size.x - 1)
-        maze[i][j] = -1;
-      else 
+      // if (i == 0 || i == size.y - 1 || j == 0 || j == size.x - 1)
+      //   maze[i][j] = -1;
+      // else 
         maze[i][j] = B;
     }
   }
@@ -443,24 +451,35 @@ getConnectedCell = (cell1, cell2, distance) => {
   return null;
 }
 
-getRandomEntrancePosition = maze => {
-  let pointTo;
-  let x;
-  let y = randomInt(0, maze.length - 1);
-  if (y != 0 && y != maze.length - 1) {
-    let decide = randomInt(0, 1);
-    if (decide == 0) {
+getRandomEntrancePosition = (maze, direction, exclude) => {
+  let x, y;
+
+  switch (direction) {
+    case "U":
+      y = 0;
+      x = randomInt(1, maze[0].length - 2);
+      while (maze[y + 1][x] == exclude)
+        x = randomInt(1, maze[0].length - 2);
+      break;
+    case "D":
+      y = maze.length - 1;
+      x = randomInt(1, maze[0].length - 2);
+      while (maze[y - 1][x] == exclude)
+        x = randomInt(1, maze[0].length - 2);
+      break;
+    case "L":
+      y = randomInt(1, maze.length - 2);
       x = 0;
-      pointTo = "R";
-    } else {
+      while (maze[y][x + 1] == exclude)
+        y = randomInt(1, maze.length - 2);
+      break;
+    case "R":
+      y = randomInt(1, maze.length - 2);
       x = maze.length - 1;
-      pointTo = "L";
-    }
-  } else {
-    x = randomInt(0, maze.length - 1);
-    if (y == 0) pointTo = "D";
-    else pointTo = "U";
+      while (maze[y][x - 1] == exclude)
+        y = randomInt(1, maze.length - 2);
+      break;
   }
 
-  return {x, y, pointTo};
-} 
+  return {x, y, pointTo: oppositeDirectionOf(direction)};
+}

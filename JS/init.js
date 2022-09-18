@@ -126,7 +126,7 @@ class Maze{
     this.colors = colors;
   }
   setEntrance(position, option) {
-    maze.content[position.y][position.x] = option;
+    this.content[position.y][position.x] = option;
   }
   getPosition(option) {
     for (let i = 0; i < this.content.length; i++) {
@@ -214,10 +214,22 @@ let maze = new Maze(
     P: "#090909"
   },
 )
-let start = getRandomEntrancePosition(maze.content)
+
+let start = getRandomEntrancePosition(maze.content, "U", B);
+
 maze.setEntrance(start, S);
-maze.setEntrance(getRandomEntrancePosition(maze.content), E);
-let player = new Player(maze.wS * 0.75, {x: maze.getPosition(S).x, y: maze.getPosition(S).y}, start.pointTo, 10, "blue");
+maze.setEntrance(getRandomEntrancePosition(maze.content, "D", P), E);
+
+let player = new Player(
+  maze.wS * 0.75, 
+  {
+    x: maze.getPosition(S).x, 
+    y: maze.getPosition(S).y
+  }, 
+  start.pointTo, 
+  10, 
+  "blue"
+);
 
 let interval = 0;
 let pjTimeOut;

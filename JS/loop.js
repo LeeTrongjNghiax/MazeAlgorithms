@@ -17,14 +17,14 @@ loop = () => {
   //   player.go(solution[interval]);
   // sleep(50);
 
-  // let s = wallFollowerAlgOneStep(player, maze, "L", trace);
-  // for (let i = 0; i < trace.length; i++) {
-  //   for (let j = 0; j < trace[i].length; j++) {
-  //     drawWallFollowerAlgTrace(ctx, trace[i][j], traceSide, j, i, maze.pS, maze.wS, "yellow")
-  //   }  
-  // }
-  // player.goOneStep(s.solutionString);
-  // sleep(3000);
+  let s = wallFollowerAlgOneStep(player, maze, "L", trace);
+  for (let i = 0; i < trace.length; i++) {
+    for (let j = 0; j < trace[i].length; j++) {
+      drawWallFollowerAlgTrace(ctx, trace[i][j], traceSide, j, i, maze.pS, maze.wS, "yellow")
+    }  
+  }
+  player.goOneStep(s.solutionString);
+  sleep(10);
   
   player.draw(ctx, maze.wS, maze.pS);
 

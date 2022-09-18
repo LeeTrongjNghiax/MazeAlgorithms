@@ -205,8 +205,8 @@ const ctx = cv.getContext("2d");
 
 let maze = new Maze(
   primAlgMazeGenerator({x: 41, y: 41}),
-  cvSide / (16 * 2.65),
-  cvSide / (16 * 2.65),
+  cvSide / (16 * 2.65), cvSide / (16 * 2.65),
+  // 30, 10,
   {
     B: "#303030",
     S: "green",
@@ -215,10 +215,11 @@ let maze = new Maze(
   },
 )
 
-let start = getRandomEntrancePosition(maze.content, "U", B);
+let directions = ["U", "D", "L", "R"]
+let start = getRandomEntrancePosition(maze.content, directions[randomInt(0, directions.length - 1)], B);
 
 maze.setEntrance(start, S);
-maze.setEntrance(getRandomEntrancePosition(maze.content, "D", P), E);
+maze.setEntrance(getRandomEntrancePosition(maze.content, directions[randomInt(0, directions.length - 1)], B), E);
 
 let player = new Player(
   maze.wS * 0.75, 

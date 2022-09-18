@@ -210,8 +210,8 @@ let maze = new Maze(
   {
     B: "black",
     // B: "",
-    S: "green",
-    E: "blue",
+    S: "yellow",
+    E: "white",
     P: "#202020"
   },
 )
@@ -230,7 +230,7 @@ let player = new Player(
   }, 
   start.pointTo, 
   10, 
-  "red"
+  "orange"
 );
 
 let player2 = new Player(
@@ -241,7 +241,7 @@ let player2 = new Player(
   }, 
   start.pointTo, 
   10, 
-  "orange"
+  "red"
 );
 
 let interval = 0;

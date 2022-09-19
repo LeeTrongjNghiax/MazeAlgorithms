@@ -49,6 +49,28 @@ oppositeDirectionOf = direction => {
   return null;
 }
 
+solvingSystemsLinearEquations2Unknowns = (matrix, result) => {
+  let det = matrix[0][0] * matrix[1][1] - matrix[0][1] * matrix[1][0];
+
+  if (det == 0) return null;
+
+  let adjointMatrix = [
+    [matrix[1][1], -matrix[0][1]],
+    [-matrix[1][0], matrix[0][0]]
+  ]
+  for (let i = 0; i < adjointMatrix.length; i++) {
+    for (let j = 0; j < adjointMatrix[i].length; j++) {
+      adjointMatrix[i][j] *= 1/det;
+    }
+  }
+  let x = adjointMatrix[0][0] * result[0][0] + adjointMatrix[0][1] * result[1][0];
+  let y = adjointMatrix[1][0] * result[0][0] + adjointMatrix[1][1] * result[1][0];
+  return {
+    x: x,
+    y: y
+  }
+}
+
 // Need Fix
 wallFollowerAlg = (player, maze, direction) => {
   let p = new Player(

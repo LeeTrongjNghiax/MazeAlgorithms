@@ -212,11 +212,11 @@ const ctx = cv.getContext("2d");
 // 1/4 -> -> lmao = 0.44
 // Dec -> ->        Dec
 
-let m = primAlgMazeGenerator({x: 5, y: 5});
+let m = primAlgMazeGenerator({x: 21, y: 21});
 
 let side = Math.max(m.length, m[0].length)
 let sum = cvSide / ((side - 1) / 2);
-let wallRatio = -2;
+let wallRatio = -4;
 let pathRatio = 1;
 
 let result = solvingSystemsLinearEquations2Unknowns(

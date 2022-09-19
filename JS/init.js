@@ -203,24 +203,40 @@ cv.width = cvSide;
 cv.height = cvSide;
 const ctx = cv.getContext("2d");
 
+let m = primAlgMazeGenerator({x: 99, y: 99});
 let maze = new Maze(
-  primAlgMazeGenerator({x: 41, y: 41}),
-  cvSide / (16 * 2.65), cvSide / (16 * 2.65),
+  m,
+  cvSide / (16 * 6.5), cvSide / (16 * 6.5),
   // 30, 10,
   {
     B: "black",
-    // B: "",
     S: "yellow",
     E: "white",
     P: "#202020"
   },
 )
 
-let directions = ["U", "D", "L", "R"]
-let start = getRandomEntrancePosition(maze.content, directions[randomInt(0, directions.length - 1)], B);
+let directions = ["U", "D", "L", "R"];
 
+let startPosition = directions[randomInt(0, directions.length - 1)];
+let start = getRandomEntrancePosition(
+  maze.content, 
+  startPosition, 
+  B
+);
 maze.setEntrance(start, S);
-maze.setEntrance(getRandomEntrancePosition(maze.content, directions[randomInt(0, directions.length - 1)], B), E);
+
+let endPosition = directions[randomInt(0, directions.length - 1)];
+if (maze.content.length == 3 || maze.content[0].length == 3) {
+  while (endPosition.localeCompare(startPosition) == 0)
+    endPosition = directions[randomInt(0, directions.length - 1)];
+}
+let end = getRandomEntrancePosition(
+  maze.content, 
+  endPosition,
+  B
+)
+maze.setEntrance(end, E);
 
 let player = new Player(
   maze.wS * 0.75, 

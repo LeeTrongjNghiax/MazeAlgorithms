@@ -25,7 +25,7 @@ loop = () => {
   }
   if (s != null)
     player.goOneStep(s.solutionString);
-  sleep(10);
+  sleep(0);
   player.draw(ctx, maze.wS, maze.pS);
 
 
@@ -37,7 +37,7 @@ loop = () => {
   }0
   if (s2 != null)
     player2.goOneStep(s2.solutionString);
-  sleep(10);
+  sleep(0);
   player2.draw(ctx, maze.wS, maze.pS);
 
 

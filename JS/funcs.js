@@ -363,8 +363,8 @@ primAlgMazeGenerator = size => {
   }
 
   // Pick a random cell
-  // let initCell = {x: randomInt(1, size.x - 1), y: randomInt(1, size.y - 1)}
-  let initCell = {x: 1, y: 5}
+  // let initCell = {x: randomInt(1, size.x - 2), y: randomInt(1, size.y - 2)}
+  let initCell = {x: 1, y: 1}
 
   // Set it to be a passage
   maze[initCell.y][initCell.x] = P;
@@ -454,7 +454,7 @@ getConnectedCell = (cell1, cell2, distance) => {
   return null;
 }
 
-getRandomEntrancePosition = (maze, direction, exclude) => {
+getRandomEntrancePosition = (maze, direction, exclude = B) => {
   let x, y;
 
   switch (direction) {
@@ -478,7 +478,7 @@ getRandomEntrancePosition = (maze, direction, exclude) => {
       break;
     case "R":
       y = randomInt(1, maze.length - 2);
-      x = maze.length - 1;
+      x = maze[0].length - 1;
       while (maze[y][x - 1] == exclude)
         y = randomInt(1, maze.length - 2);
       break;

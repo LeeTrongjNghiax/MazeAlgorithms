@@ -186,10 +186,13 @@ class Maze{
         }
         if ((i % 2 == 0) && (j % 2 == 0))
           ctx.fillRect((j / 2) * (wS + pS), (i / 2) * (wS + pS), wS, wS);
+
         else if ((i % 2 != 0) && (j % 2 != 0)) 
           ctx.fillRect(((j - 1)/ 2) * (wS + pS) + wS, ((i - 1) / 2) * (wS + pS) + wS, pS, pS);
+
         else if (i % 2 != 0 && j % 2 == 0) 
           ctx.fillRect((j / 2) * (wS + pS), ((i - 1) / 2) * (wS + pS) + wS, wS, pS);
+          
         else if (i % 2 == 0 && j % 2 != 0) 
           ctx.fillRect(((j - 1) / 2) * (wS + pS) + wS, (i / 2) * (wS + pS), pS, wS);
       }
@@ -203,11 +206,11 @@ cv.width = cvSide;
 cv.height = cvSide;
 const ctx = cv.getContext("2d");
 
-let m = primAlgMazeGenerator({x: 99, y: 99});
-let ratio = 1;
+let m = primAlgMazeGenerator({x: 41, y: 41});
 let maze = new Maze(
   m,
-  cvSide / m.length, cvSide / m.length,
+  cvSide / Math.max(m.length, m[0].length), 
+  cvSide / Math.max(m.length, m[0].length) * 1.5 / 3,
   {
     B: "black",
     S: "yellow",
@@ -227,7 +230,8 @@ let start = getRandomEntrancePosition(
 maze.setEntrance(start, S);
 
 let endPosition = directions[randomInt(0, directions.length - 1)];
-if (maze.content.length == 3 || maze.content[0].length == 3) {
+if (maze.content.length == 3 || maze.content[0].length == 3 ||
+    maze.content.length == 5 || maze.content[0].length == 5) {
   while (endPosition.localeCompare(startPosition) == 0)
     endPosition = directions[randomInt(0, directions.length - 1)];
 }
@@ -264,7 +268,8 @@ let interval = 0;
 let pjTimeOut;
 let pjSpeed = 500;
 
-let traceSide = (maze.pS / 3) / 3 * 1;
+let traceSidePs = (maze.pS / 3) / 3 * 2;
+let traceSideWs = (maze.wS / 3) / 3 * 2;
 
 let trace = [];
 for (let i = 0; i < maze.content.length; i++) {

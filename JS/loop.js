@@ -20,7 +20,7 @@ loop = () => {
   let s = wallFollowerAlgOneStep(player, maze, "L", trace);
   for (let i = 0; i < trace.length; i++) {
     for (let j = 0; j < trace[i].length; j++) {
-      drawWallFollowerAlgTrace(ctx, trace[i][j], traceSide, j, i, maze.pS, maze.wS, player.color);
+      drawWallFollowerAlgTrace(ctx, trace[i][j], traceSidePs, traceSideWs, j, i, maze.pS, maze.wS, player.color);
     }  
   }
   if (s != null)
@@ -32,14 +32,13 @@ loop = () => {
   let s2 = wallFollowerAlgOneStep(player2, maze, "R", trace2);
   for (let i = 0; i < trace2.length; i++) {
     for (let j = 0; j < trace2[i].length; j++) {
-      drawWallFollowerAlgTrace(ctx, trace2[i][j], traceSide, j, i, maze.pS, maze.wS, player2.color)
+      drawWallFollowerAlgTrace(ctx, trace2[i][j], traceSidePs, traceSideWs, j, i, maze.pS, maze.wS, player2.color)
     }  
   }0
   if (s2 != null)
     player2.goOneStep(s2.solutionString);
   sleep(0);
   player2.draw(ctx, maze.wS, maze.pS);
-
 
   interval++;
 }

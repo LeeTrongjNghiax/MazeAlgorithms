@@ -197,17 +197,17 @@ class Maze{
   }
 }
 
-const cvSide = 850;
+const cvSide = 900;
 const cv = document.querySelector("#cv");
 cv.width = cvSide;
 cv.height = cvSide;
 const ctx = cv.getContext("2d");
 
 let m = primAlgMazeGenerator({x: 99, y: 99});
+let ratio = 1;
 let maze = new Maze(
   m,
-  cvSide / (16 * 6.5), cvSide / (16 * 6.5),
-  // 30, 10,
+  cvSide / m.length, cvSide / m.length,
   {
     B: "black",
     S: "yellow",

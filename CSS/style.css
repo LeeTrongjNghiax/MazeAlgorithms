@@ -21,13 +21,11 @@ body {
 }
 #cv {
   border: 1px solid white;
-  float: left;
   width: var(--cvSide);
   height: var(--cvSide);
 }
 #controller {
   padding: 10px;
-  float: none;
   width: var(--controllerWidth);
   font-size: 15px;
 }

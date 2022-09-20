@@ -1,10 +1,8 @@
 :root {
-  --cvSide: 400px;
-  --controllerWidth: 300px;
+  --cvSide: 600px;
+  --controllerWidth: 400px;
 }
 html {
-  padding: 0;
-  margin: 0;
   background-color: #000000;
 }
 body {
@@ -28,8 +26,8 @@ body {
   height: var(--cvSide);
 }
 #controller {
-  padding: 3vh;
-  float: right;
+  padding: 10px;
+  float: none;
   width: var(--controllerWidth);
   font-size: 15px;
 }

@@ -1,0 +1,43 @@
+:root {
+  --cvSide: 600px;
+  --controllerWidth: 400px;
+}
+html {
+  padding: 0;
+  margin: 0;
+  background-color: #404040;
+}
+body {
+  padding: 0;
+  margin: 0;
+  background-color: #404040;
+  color: white;
+  font-family: monospace;
+}
+#container {
+  position: relative;
+  display: flexbox;
+  width: 100%;
+  height: calc(var(--cvSide) * 2);
+}
+#cv {
+  border: 1px solid white;
+  float: left;
+  width: var(--cvSide);
+  height: var(--cvSide);
+}
+#controller {
+  float: right;
+  width: var(--controllerWidth);
+  font-size: 15px;
+}
+
+@media (max-width: var(--cvSide)) {
+  #container {
+    width: 100%;
+    height: calc(var(--cvSide) * 2);
+  }
+  #controller {
+    float: left;
+  }
+}

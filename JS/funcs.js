@@ -251,11 +251,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
   ctx.fillStyle = color;
 
   if (traceString[0] == "1") {
-    // dy[0] = 0;
-    // xL[0] = traceSidePs;
-    // dx[0] = (pS / 3 - traceSidePs);
-    // yL[0] = pS / 3 - traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[0] = pS / 3 - traceSideWs + wS;
       // dy[0] = pS / 3 - traceSideWs + wS;
@@ -279,11 +274,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[1] == "1") {
-    // dx[1] = (pS / 3 * 2);
-    // dy[1] = 0;
-    // xL[1] = traceSidePs;
-    // yL[1] = pS / 3 - traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[1] = pS / 3 - traceSideWs + wS;
       // dy[1] = pS / 3 - traceSideWs + wS;
@@ -307,11 +297,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[2] == "1") {
-    // dx[2] = (pS / 3 * 2 + traceSidePs);
-    // dy[2] = (pS / 3 - traceSidePs);
-    // xL[2] = pS / 3 - traceSidePs;
-    // yL[2] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[2] = pS / 3 - traceSideWs + wS;
       // dy[2] = pS / 3 - traceSideWs + wS;
@@ -335,11 +320,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[3] == "1") {
-    // dx[3] = (pS / 3 * 2 + traceSidePs);
-    // dy[3] = (pS / 3 * 2);
-    // xL[3] = pS / 3 - traceSidePs;
-    // yL[3] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[3] = pS / 3 - traceSideWs + wS;
       // dy[3] = pS / 3 - traceSideWs + wS;
@@ -391,11 +371,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[5] == "1") {
-    // dx[5] = (pS / 3 - traceSidePs);
-    // dy[5] = (pS / 3 * 2 + traceSidePs);
-    // xL[5] = traceSidePs;
-    // yL[5] = pS / 3 - traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[5] = pS / 3 - traceSideWs + wS;
       // dy[5] = pS / 3 - traceSideWs + wS;
@@ -419,11 +394,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[6] == "1") {
-    // dx[6] = 0;
-    // dy[6] = (pS / 3 * 2);
-    // xL[6] = pS / 3 - traceSidePs;
-    // yL[6] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[6] = pS / 3 - traceSideWs + wS;
       // dy[6] = pS / 3 - traceSideWs + wS;
@@ -447,11 +417,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[7] == "1") {
-    // dx[7] = 0;
-    // dy[7] = (pS / 3 - traceSidePs);
-    // xL[7] = pS / 3 - traceSidePs;
-    // yL[7] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[7] = pS / 3 - traceSideWs + wS;
       // dy[7] = pS / 3 - traceSideWs + wS;
@@ -475,11 +440,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[8] == "1") {
-    // dx[8] = (pS / 3 - traceSidePs);
-    // dy[8] = (pS / 3 - traceSidePs);
-    // xL[8] = traceSidePs;
-    // yL[8] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[8] = pS / 3 - traceSideWs + wS;
       // dy[8] = pS / 3 - traceSideWs + wS;
@@ -503,11 +463,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[9] == "1") {
-    // dx[9] = (pS / 3);
-    // dy[9] = (pS / 3 - traceSidePs);
-    // xL[9] = pS / 3;
-    // yL[9] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[9] = pS / 3 - traceSideWs + wS;
       // dy[9] = pS / 3 - traceSideWs + wS;
@@ -531,11 +486,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[10] == "1") {
-    // dx[10] = (pS / 3 * 2);
-    // dy[10] = (pS / 3 - traceSidePs);
-    // xL[10] = traceSidePs;
-    // yL[10] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[10] = pS / 3 - traceSideWs + wS;
       // dy[10] = pS / 3 - traceSideWs + wS;
@@ -559,11 +509,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[11] == "1") {
-    // dx[11] = (pS / 3 * 2);
-    // dy[11] = (pS / 3);
-    // xL[11] = traceSidePs;
-    // yL[11] = pS / 3;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[11] = pS / 3 - traceSideWs + wS;
       // dy[11] = pS / 3 - traceSideWs + wS;
@@ -587,11 +532,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[12] == "1") {
-    // dx[12] = (pS / 3 * 2);
-    // dy[12] = (pS / 3 * 2);
-    // xL[12] = traceSidePs;
-    // yL[12] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[12] = pS / 3 - traceSideWs + wS;
       // dy[12] = pS / 3 - traceSideWs + wS;
@@ -615,11 +555,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[13] == "1") {
-    // dx[13] = (pS / 3);
-    // dy[13] = (pS / 3 * 2);
-    // xL[13] = pS / 3;
-    // yL[13] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[13] = pS / 3 - traceSideWs + wS;
       // dy[13] = pS / 3 - traceSideWs + wS;
@@ -643,11 +578,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[14] == "1") {
-    // dx[14] = (pS / 3 - traceSidePs);
-    // dy[14] = (pS / 3 * 2);
-    // xL[14] = traceSidePs;
-    // yL[14] = traceSidePs;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[14] = pS / 3 - traceSideWs + wS;
       // dy[14] = pS / 3 - traceSideWs + wS;
@@ -671,11 +601,6 @@ drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, 
     }
   }
   if (traceString[15] == "1") {
-    // dx[15] = (pS / 3 - traceSidePs);
-    // dy[15] = (pS / 3);
-    // xL[15] = traceSidePs;
-    // yL[15] = pS / 3;
-
     if ((y % 2 == 0) && (x % 2 == 0)) {
       // dx[15] = pS / 3 - traceSideWs + wS;
       // dy[15] = pS / 3 - traceSideWs + wS;

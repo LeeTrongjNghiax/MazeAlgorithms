@@ -1,7 +1,8 @@
 loop = () => {
   requestAnimationFrame(loop);
+  
   ctx.clearRect(0, 0, cv.width, cv.height);
-
+  
   cv.width = cvSide;
   cv.height = cvSide;
 

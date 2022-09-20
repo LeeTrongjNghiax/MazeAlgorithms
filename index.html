@@ -6,25 +6,153 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maze</title>
 
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-      background-color: #404040;
-      color: white;
-      font-family: monospace;
-    }
-    #cv {
-      border: 1px solid white;
-    }
-  </style>
-
   <script src="JS/funcs.js"></script>
+  <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
-  <canvas id="cv"></canvas>
-  <div class="container">
-    <label for="">Maze</label>
+  <div id="container">
+    <canvas id="cv"></canvas>
+    <div id="controller">
+      <button onClick="location.reload();">New Maze</button>
+      <div id="mazeController">
+        <h1>Maze controller</h1>
+
+        <table>
+          <tr>
+            <th><label for="inpMazeWidth">Width: </label></th>
+            <td><p id="resultMazeWidth">41</p></td>
+            <td><input id="inpMazeWidth" type="range" value="41" min="3" max="299" step="2"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpMazeWidth">Height: </label></th>
+            <td><p id="resultMazeWidth">41</p></td>
+            <td><input id="inpMazeWidth" type="range" value="41" min="3" max="299" step="2"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpMazePathSide">Path Side Ratio: </label></th>
+            <td><p id="resultMazePathSide">1</p></td>
+            <td><input id="inpMazePathSide" type="range" value="1" min="1" max="10" step="1"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpWallSide">Wall Side Ratio: </label></th>
+            <td><p id="resultWallSide">1</p></td>
+            <td><input id="inpWallSide" type="range" value="1" min="1" max="10" step="1"></td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><label for="slMazeStartPosition">Start Position: </label></th>
+            <td><p id="resultMazeStartPosition">Random</p></td>
+            <td>
+              <select id="slMazeStartPosition">
+                <option value="R" selected>Random</option>
+                <option value="U">Top</option>
+                <option value="D">Bottom</option>
+                <option value="L">Left</option>
+                <option value="R">Right</option>
+                <option value="TB">Top or Bottom</option>
+                <option value="LR">Left or Right</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <th><label for="slMazeEndPosition">End Position: </label></th>
+            <td><p id="resultMazeEndPosition">Random</p></td>
+            <td>
+              <select id="slMazeEndPosition">
+                <option value="R" selected>Random</option>
+                <option value="U">Top</option>
+                <option value="D">Bottom</option>
+                <option value="L">Left</option>
+                <option value="R">Right</option>
+                <option value="TB">Top or Bottom</option>
+                <option value="LR">Left or Right</option>
+                <option value="SAS">Same as Start</option>
+                <option value="OAS">Opposite as Start</option>
+                <option value="LOS">To the left of Start</option>
+                <option value="ROS">To the right of Start</option>
+              </select>
+            </td>
+          </tr>
+        </table>
+
+        <table>
+          <tr>
+            <th><label for="inpMazePathColor">Path Color: </label></th>
+            <td><p id="resultMazePathColor">#202020</p></td>
+            <td><input id="inpMazePathColor" type="color" value="#202020"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpMazeWallColor">Wall Color: </label></th>
+            <td><p id="resultMazeWallColor">#000000</p></td>
+            <td><input id="inpMazeWallColor" type="color" value="#000000"></td>
+          </tr>
+        </table>
+      </div>
+      
+      <div id="npc1Controller">
+        <h1>NPC1 controller</h1>
+
+        <button>Start/Stop</button>
+        <button>Restart</button>
+        <button>Enable Tracing</button>
+
+        <table>
+          <tr>
+            <th><label for="inpNpc1Speed">Speed: </label></th>
+            <td><p id="resultNpc1Speed">1</p></td>
+            <td><input id="inpNpc1Speed" type="range" value="0" min="0" max="3000" step="1"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpNpc1Color">Color: </label></th>
+            <td><p id="resultNpc1Color">#FF0000</p></td>
+            <td><input id="inpNpc1Color" type="color" value="#FF0000"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpNpc1TracingColor">Tracing Color: </label></th>
+            <td><p id="resultNpc1TracingColor">#FF0000</p></td>
+            <td><input id="inpNpc1TracingColor" type="color" value="#FF0000"></td>
+          </tr>
+        </table>
+      </div>
+
+      <div id="npc2Controller">
+        <h1>NPC2 controller</h1>
+
+        <button>Start/Stop</button>
+        <button>Restart</button>
+        <button>Enable Tracing</button>
+
+        <table>
+          <tr>
+            <th><label for="inpNpc2Speed">Speed: </label></th>
+            <td><p id="resultNpc2Speed">1</p></td>
+            <td><input id="inpNpc2Speed" type="range" value="0" min="0" max="3000" step="1"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpNpc2Color">Color: </label></th>
+            <td><p id="resultNpc2Color">#FFA500</p></td>
+            <td><input id="inpNpc2Color" type="color" value="#FFA500"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpNpc2TracingColor">Tracing Color: </label></th>
+            <td><p id="resultNpc2TracingColor">#FFA500</p></td>
+            <td><input id="inpNpc2TracingColor" type="color" value="#FFA500"></td>
+          </tr>
+        </table>
+      </div>
+      <button onClick="location.reload();">New Maze</button>
+    </div>
   </div>
 
   <script src="JS/init.js"></script>

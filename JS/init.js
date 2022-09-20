@@ -200,23 +200,19 @@ class Maze{
   }
 }
 
-const cvSide = 700;
+const cvSide = getComputedStyle(document.documentElement)
+.getPropertyValue('--cvSide').slice(0, -2);
+console.log(cvSide);
 const cv = document.querySelector("#cv");
 cv.width = cvSide;
 cv.height = cvSide;
 const ctx = cv.getContext("2d");
 
-// 1/1 -> -> lmao = 1
-// 1/2 -> -> lmao = 0.7
-// 1/3 -> -> lmao = 0.54
-// 1/4 -> -> lmao = 0.44
-// Dec -> ->        Dec
-
-let m = primAlgMazeGenerator({x: 21, y: 21});
+let m = primAlgMazeGenerator({x: 41, y: 41});
 
 let side = Math.max(m.length, m[0].length)
-let sum = cvSide / ((side - 1) / 2);
-let wallRatio = -4;
+let sum = cvSide / ( (side - 1) / 2);
+let wallRatio = -20;
 let pathRatio = 1;
 
 let result = solvingSystemsLinearEquations2Unknowns(
@@ -231,7 +227,7 @@ let maze = new Maze(
   pS, 
   wS,
   {
-    B: "black",
+    B: "#000000",
     S: "yellow",
     E: "white",
     P: "#202020"

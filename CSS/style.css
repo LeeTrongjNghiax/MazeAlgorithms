@@ -63,13 +63,3 @@ button.restart {
 button.tracing {
   background-color: #505050;
 }
-
-@media (max-width: var(--cvSide)) {
-  #container {
-    width: 100%;
-    height: calc(var(--cvSide) * 2);
-  }
-  #controller {
-    float: left;
-  }
-}

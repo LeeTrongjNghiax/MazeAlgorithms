@@ -14,8 +14,6 @@ body {
 }
 #container {
   position: relative;
-  display: flex;
-  justify-content: center;
   width: 100%;
   height: calc(var(--cvSide) * 2);
 }
@@ -26,7 +24,6 @@ body {
 }
 #controller {
   padding: 10px;
-  width: var(--controllerWidth);
   font-size: 15px;
 }
 

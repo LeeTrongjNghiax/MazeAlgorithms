@@ -5,18 +5,19 @@
 html {
   padding: 0;
   margin: 0;
-  background-color: #404040;
+  background-color: #000000;
 }
 body {
   padding: 0;
   margin: 0;
-  background-color: #404040;
+  background-color: #000000;
   color: white;
   font-family: monospace;
 }
 #container {
   position: relative;
-  display: flexbox;
+  display: flex;
+  justify-content: center;
   width: 100%;
   height: calc(var(--cvSide) * 2);
 }
@@ -27,9 +28,40 @@ body {
   height: var(--cvSide);
 }
 #controller {
+  padding: 3vh;
   float: right;
   width: var(--controllerWidth);
   font-size: 15px;
+}
+
+button {
+  padding: 10px;
+  color: white;
+  font-family: monospace;
+}
+
+select {
+  background-color: black;
+  color: white;
+}
+
+button.newMaze {
+  width: 100%;
+  font-size: 30px;
+  background-color: green;
+  border: none;
+}
+
+button.startStop {
+  background-color: blue;
+}
+
+button.restart {
+  background-color: red;
+}
+
+button.tracing {
+  background-color: #505050;
 }
 
 @media (max-width: var(--cvSide)) {

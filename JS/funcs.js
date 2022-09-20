@@ -1,3 +1,123 @@
+mazeInit = () => {
+  m = primAlgMazeGenerator({
+    x: document.querySelector("#inpMazeWidth").value, 
+    y: document.querySelector("#inpMazeHeight").value
+  });
+  
+  pathRatio =  document.querySelector("#inpMazePathSide").value;
+  wallRatio = -document.querySelector("#inpMazeWallSide").value;
+  
+  pathColor = document.querySelector("#inpMazePathColor").value;
+  wallColor = document.querySelector("#inpMazeWallColor").value;
+  startColor = document.querySelector("#inpMazeStartColor").value;
+  endColor = document.querySelector("#inpMazeEndColor").value;
+  
+  player1Speed = document.querySelector("#inpNpc1Speed").value;
+  player1Color = document.querySelector("#inpNpc1Color").value;
+  player1TracingColor = document.querySelector("#inpNpc1TracingColor").value;
+  
+  player2Speed = document.querySelector("#inpNpc2Speed").value;
+  player2Color = document.querySelector("#inpNpc2Color").value;
+  player2TracingColor = document.querySelector("#inpNpc2TracingColor").value;
+  
+  let side = Math.max(m.length, m[0].length);
+  
+  let result = solvingSystemsLinearEquations2Unknowns(
+    [ [ (side + 1) / 2, (side - 1) / 2 ], 
+      [ wallRatio, pathRatio] ], [ [cvSide], [0] ]
+  );
+
+  let pS = result.y;
+  let wS = result.x;
+  
+  maze = new Maze(
+    m,
+    pS, 
+    wS,
+    {
+      B: wallColor,
+      S: startColor,
+      E: endColor,
+      P: pathColor
+    },
+  )
+  
+  let startPosition = directions[randomInt(0, directions.length - 1)];
+  let start = getRandomEntrancePosition(
+    maze.content, 
+    startPosition, 
+    B
+  );
+  maze.setEntrance(start, S);
+  
+  let endPosition = directions[randomInt(0, directions.length - 1)];
+  if (maze.content.length == 3 || maze.content[0].length == 3 ||
+      maze.content.length == 5 || maze.content[0].length == 5) {
+    while (endPosition.localeCompare(startPosition) == 0)
+      endPosition = directions[randomInt(0, directions.length - 1)];
+  }
+  let end = getRandomEntrancePosition(
+    maze.content, 
+    endPosition,
+    B
+  )
+  maze.setEntrance(end, E);
+  
+  player = new Player(
+    maze.wS * 0.75, 
+    {
+      x: maze.getPosition(S).x, 
+      y: maze.getPosition(S).y
+    }, 
+    start.pointTo, 
+    player1Speed, 
+    player1Color
+  );
+  
+  player2 = new Player(
+    maze.wS * 0.75, 
+    {
+      x: maze.getPosition(S).x, 
+      y: maze.getPosition(S).y
+    }, 
+    start.pointTo, 
+    player2Speed, 
+    player2Color
+  );
+  
+  interval = 0;
+  
+  traceSidePs = (maze.pS / 3) / 3 * 2;
+  traceSideWs = (maze.wS / 3) / 3 * 2;
+  
+  trace = [];
+  for (let i = 0; i < maze.content.length; i++) {
+    trace[i] = [];
+    for (let j = 0; j < maze.content[i].length; j++) {
+      trace[i][j] = '0000000000000000';
+    }
+  }
+  
+  trace2 = [];
+  for (let i = 0; i < maze.content.length; i++) {
+    trace2[i] = [];
+    for (let j = 0; j < maze.content[i].length; j++) {
+      trace2[i][j] = '0000000000000000';
+    }
+  }
+  
+  // let solution = wallFollowerAlg(player, maze, "R").split('')
+  
+  // let playerJourney = function(solution) {
+  //   if (interval < solution.length) {
+  //     player.goOneStep(solution[interval]);
+  //     sleep(100);
+  //   }
+  //   pjTimeOut = setTimeout(playerJourney, pjSpeed);
+  //   interval++;
+  // }
+}
+
 sleep = milliseconds => {
   const date = Date.now();
   let currentDate = null;

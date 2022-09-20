@@ -7,15 +7,69 @@
   <title>Maze</title>
 
   <script src="JS/funcs.js"></script>
+  <script src="JS/classes.js"></script>
+
   <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
   <div id="container">
     <canvas id="cv"></canvas>
     <div id="controller">
-      <button onClick="location.reload();">New Maze</button>
+      <button class="newMaze">New Maze</button>
       <div id="mazeController">
         <h1>Maze controller</h1>
+
+        <table>
+          <tr>
+            <th><label for="slMazeGenerationAlgorithm">Generation Algorithm: </label></th>
+            <td>
+              <select id="slMazeGenerationAlgorithm">
+                <option value="DFSI">DFS Iterative</option>
+                <option value="DFSR">DFS Recursive</option>
+                <option value="RK">Randomized Kruskal</option>
+                <option value="RP" selected>Randomized Prim</option>
+                <option value="W">Wilson</option>
+                <option value="ABR">Aldous-Broder Recursive</option>
+                <option value="ABS">Aldous-Broder Simple</option>
+                <option value="CA">Cellular Automaton</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <th><label for="slMazeStartPosition">Start Position: </label></th>
+            <td>
+              <select id="slMazeStartPosition">
+                <option value="R" selected>Random</option>
+                <option value="U">Top</option>
+                <option value="D">Bottom</option>
+                <option value="L">Left</option>
+                <option value="R">Right</option>
+                <option value="UD">Top or Bottom</option>
+                <option value="LR">Left or Right</option>
+              </select>
+            </td>
+          </tr>
+
+          <tr>
+            <th><label for="slMazeEndPosition">End Position: </label></th>
+            <td>
+              <select id="slMazeEndPosition">
+                <option value="R" selected>Random</option>
+                <option value="U">Top</option>
+                <option value="D">Bottom</option>
+                <option value="L">Left</option>
+                <option value="R">Right</option>
+                <option value="UD">Top or Bottom</option>
+                <option value="LR">Left or Right</option>
+                <option value="SAS">Same as Start</option>
+                <option value="OAS">Opposite as Start</option>
+                <option value="LOS">To the left of Start</option>
+                <option value="ROS">To the right of Start</option>
+              </select>
+            </td>
+          </tr>
+        </table>
 
         <table>
           <tr>
@@ -25,9 +79,9 @@
           </tr>
 
           <tr>
-            <th><label for="inpMazeWidth">Height: </label></th>
-            <td><p id="resultMazeWidth">41</p></td>
-            <td><input id="inpMazeWidth" type="range" value="41" min="3" max="299" step="2"></td>
+            <th><label for="inpMazeHeight">Height: </label></th>
+            <td><p id="resultMazeHeight">41</p></td>
+            <td><input id="inpMazeHeight" type="range" value="41" min="3" max="299" step="2"></td>
           </tr>
 
           <tr>
@@ -37,47 +91,9 @@
           </tr>
 
           <tr>
-            <th><label for="inpWallSide">Wall Side Ratio: </label></th>
-            <td><p id="resultWallSide">1</p></td>
-            <td><input id="inpWallSide" type="range" value="1" min="1" max="10" step="1"></td>
-          </tr>
-        </table>
-
-        <table>
-          <tr>
-            <th><label for="slMazeStartPosition">Start Position: </label></th>
-            <td><p id="resultMazeStartPosition">Random</p></td>
-            <td>
-              <select id="slMazeStartPosition">
-                <option value="R" selected>Random</option>
-                <option value="U">Top</option>
-                <option value="D">Bottom</option>
-                <option value="L">Left</option>
-                <option value="R">Right</option>
-                <option value="TB">Top or Bottom</option>
-                <option value="LR">Left or Right</option>
-              </select>
-            </td>
-          </tr>
-
-          <tr>
-            <th><label for="slMazeEndPosition">End Position: </label></th>
-            <td><p id="resultMazeEndPosition">Random</p></td>
-            <td>
-              <select id="slMazeEndPosition">
-                <option value="R" selected>Random</option>
-                <option value="U">Top</option>
-                <option value="D">Bottom</option>
-                <option value="L">Left</option>
-                <option value="R">Right</option>
-                <option value="TB">Top or Bottom</option>
-                <option value="LR">Left or Right</option>
-                <option value="SAS">Same as Start</option>
-                <option value="OAS">Opposite as Start</option>
-                <option value="LOS">To the left of Start</option>
-                <option value="ROS">To the right of Start</option>
-              </select>
-            </td>
+            <th><label for="inpMazeWallSide">Wall Side Ratio: </label></th>
+            <td><p id="resultMazeWallSide">1</p></td>
+            <td><input id="inpMazeWallSide" type="range" value="1" min="1" max="10" step="1"></td>
           </tr>
         </table>
 
@@ -93,15 +109,27 @@
             <td><p id="resultMazeWallColor">#000000</p></td>
             <td><input id="inpMazeWallColor" type="color" value="#000000"></td>
           </tr>
+
+          <tr>
+            <th><label for="inpMazeStartColor">Start Color: </label></th>
+            <td><p id="resultMazeStartColor">#202020</p></td>
+            <td><input id="inpMazeStartColor" type="color" value="#ffff00"></td>
+          </tr>
+
+          <tr>
+            <th><label for="inpMazeEndColor">End Color: </label></th>
+            <td><p id="resultMazeEndColor">#ffffff</p></td>
+            <td><input id="inpMazeEndColor" type="color" value="#ffffff"></td>
+          </tr>
         </table>
       </div>
       
       <div id="npc1Controller">
         <h1>NPC1 controller</h1>
 
-        <button>Start/Stop</button>
-        <button>Restart</button>
-        <button>Enable Tracing</button>
+        <button class="startStop">Start/Stop</button>
+        <button class="restart">Restart</button>
+        <button class="tracing">Enable/Disable Tracing</button>
 
         <table>
           <tr>
@@ -127,9 +155,9 @@
       <div id="npc2Controller">
         <h1>NPC2 controller</h1>
 
-        <button>Start/Stop</button>
-        <button>Restart</button>
-        <button>Enable Tracing</button>
+        <button class="startStop">Start/Stop</button>
+        <button class="restart">Restart</button>
+        <button class="tracing">Enable/Disable Tracing</button>
 
         <table>
           <tr>
@@ -151,11 +179,12 @@
           </tr>
         </table>
       </div>
-      <button onClick="location.reload();">New Maze</button>
+      <button class="newMaze">New Maze</button>
     </div>
   </div>
 
   <script src="JS/init.js"></script>
   <script src="JS/loop.js"></script>
+  <script src="JS/eventListeners.js"></script>
 </body>
 </html>

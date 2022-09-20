@@ -1,6 +1,6 @@
 :root {
-  --cvSide: 600px;
-  --controllerWidth: 400px;
+  --cvSide: 400px;
+  --controllerWidth: 300px;
 }
 html {
   padding: 0;

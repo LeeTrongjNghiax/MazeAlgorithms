@@ -16,15 +16,20 @@ body {
   position: relative;
   width: 100%;
   height: calc(var(--cvSide) * 2);
+  display: flex;
+  justify-content: center;
 }
 #cv {
   border: 1px solid white;
   width: var(--cvSide);
   height: var(--cvSide);
+  float: left;
 }
 #controller {
+  width: 300px;
   padding: 10px;
   font-size: 15px;
+  float: right;
 }
 
 button {

@@ -1,23 +1,19 @@
 document.querySelector(".newMaze").addEventListener("click", () => mazeInit());
 
 document.querySelector("#inpMazeWidth").addEventListener("change", () => {
-  mazeInit();
   document.querySelector("#resultMazeWidth").innerHTML = 
   document.querySelector("#inpMazeWidth").value;
 });
 document.querySelector("#inpMazeHeight").addEventListener("change", () => {
-  mazeInit();
   document.querySelector("#resultMazeHeight").innerHTML = 
   document.querySelector("#inpMazeHeight").value;
 });
 
 document.querySelector("#inpMazePathSide").addEventListener("change", () => {
-  mazeInit();
   document.querySelector("#resultMazePathSide").innerHTML = 
   document.querySelector("#inpMazePathSide").value;
 });
 document.querySelector("#inpMazeWallSide").addEventListener("change", () => {
-  mazeInit()
   document.querySelector("#resultMazeWallSide").innerHTML = 
   document.querySelector("#inpMazeWallSide").value;
 });

@@ -30,7 +30,7 @@ loop = () => {
     }  
   }
   if (s != null)
-    player.goOneStep(s.solutionString);
+    player.goOneStep(s);
   sleep(player.speed);
   player.draw(ctx, maze.wS, maze.pS);
 
@@ -47,7 +47,7 @@ loop = () => {
     }  
   }
   if (s2 != null)
-    player2.goOneStep(s2.solutionString);
+    player2.goOneStep(s2);
   sleep(player2.speed);
   player2.draw(ctx, maze.wS, maze.pS);
 

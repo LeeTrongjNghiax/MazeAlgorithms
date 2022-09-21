@@ -319,50 +319,18 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
     }
     if ( content[p.positions.y + y1][p.positions.x + x1] != 0 ) {
       trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], rotateMove);
-      p.rotate(direction);
-      p.move();
-      return {
-        positions: {
-          x: p.positions.x,
-          y: p.positions.y,
-        }, 
-        solutionString: `${direction}M`
-      };
+      return `${direction}M`;
     } else {
       if ( content[p.positions.y + y2][p.positions.x + x2] != 0 ) {
         trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], move);
-        p.move();
-        return {
-          positions: {
-            x: p.positions.x,
-            y: p.positions.y,
-          }, 
-          solutionString: `M`
-        };
+        return `M`;
       } else { 
         if ( content[p.positions.y + y3][p.positions.x + x3] != 0 ) {
           trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], inverseRotateMove);
-          p.rotate(oppositeDirectionOf(direction));
-          p.move();
-          return {
-            positions: {
-              x: p.positions.x,
-              y: p.positions.y,
-            }, 
-            solutionString: `${oppositeDirectionOf(direction)}M`
-          };
+          return `${oppositeDirectionOf(direction)}M`;
         } else {
           trace[p.positions.y][p.positions.x] = changeTraceString(trace[p.positions.y][p.positions.x], doubleRotateMove);
-          p.rotate(direction);
-          p.rotate(direction);
-          p.move();
-          return {
-            positions: {
-              x: p.positions.x,
-              y: p.positions.y,
-            }, 
-            solutionString: `${direction}${direction}M`
-          };
+          return `${direction}${direction}M`;
         }
       }
     }

@@ -9,8 +9,10 @@ class Player{
     this.originalPositions = {x: 0, y: 0};
     this.originalPositions.x = positions.x;
     this.originalPositions.y = positions.y;
-    this.originalPointTo = "";
     this.originalPointTo = pointTo;
+
+    this.moveCount = 0;
+    this.rotateCount = 0;
   }
   draw(ctx, wS, pS) {
     let x1, x2, x3, y1, y2, y3;
@@ -68,6 +70,7 @@ class Player{
         }
         break;
     }
+    this.rotateCount++;
   }
   move() {
     switch (this.pointTo) {
@@ -84,6 +87,7 @@ class Player{
         this.positions.x -= 1; 
         break;
     }
+    this.moveCount++;
   }
   goOneStep(move) {
     switch (move) {

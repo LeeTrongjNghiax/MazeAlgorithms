@@ -23,13 +23,13 @@ let endColor;
 
 let maze;
 
-let player1Speed
-let player1Color
-let player1TracingColor
+let player1Speed;
+let player1Color;
+let player1TracingColor;
 
-let player2Speed
-let player2Color
-let player2TracingColor
+let player2Speed;
+let player2Color;
+let player2TracingColor;
 
 let interval;
 let pjTimeOut;

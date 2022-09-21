@@ -16,19 +16,42 @@ body {
   position: relative;
   width: 100%;
   height: calc(var(--cvSide) * 2);
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
 }
 #cv {
   border: 1px solid white;
   width: var(--cvSide);
   height: var(--cvSide);
-  float: left;
 }
 #controller {
-  width: 300px;
+  width: 400px;
   padding: 10px;
   font-size: 15px;
+}
+
+.controllerTitle {
+  width: 100%;
+  display: flex;
+}
+
+.controllerTitle > button {
+  border: 1px solid white;
+  background-color: black;
+  padding: 2%;
+  margin: 2%;
+}
+
+#mazeControllerContent {
+  display: none;
+}
+
+#ncp1ControllerContent {
+  display: none;
+}
+
+#ncp2ControllerContent {
+  display: none;
 }
 
 button {

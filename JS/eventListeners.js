@@ -1,5 +1,33 @@
 document.querySelector(".newMaze").addEventListener("click", () => mazeInit());
 
+document.querySelector("#mazeSwitch").addEventListener("click", () => {
+  if (document.querySelector("#mazeControllerContent").style.display == "none")
+    document.querySelector("#mazeControllerContent").style.display = "block";
+  else
+    document.querySelector("#mazeControllerContent").style.display = "none";
+});
+
+document.querySelector("#npc1Switch").addEventListener("click", () => {
+  if (document.querySelector("#ncp1ControllerContent").style.display == "none")
+    document.querySelector("#ncp1ControllerContent").style.display = "block";
+  else
+    document.querySelector("#ncp1ControllerContent").style.display = "none";
+});
+
+document.querySelector("#npc2Switch").addEventListener("click", () => {
+  if (document.querySelector("#ncp2ControllerContent").style.display == "none") {
+    document.querySelector("#ncp2ControllerContent").style.display = "block";
+    console.log("1");
+  } else if (document.querySelector("#ncp2ControllerContent").style.display == "block") {
+    document.querySelector("#ncp2ControllerContent").style.display = "none";
+    console.log("2");
+  }
+});
+
+document.querySelector("#npc2Switch").addEventListener("click", () => {
+  document.querySelector("#ncp2ControllerContent").style.display = "block";
+});
+
 document.querySelector("#inpMazeWidth").addEventListener("change", () => {
   document.querySelector("#resultMazeWidth").innerHTML = 
   document.querySelector("#inpMazeWidth").value;

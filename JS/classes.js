@@ -131,7 +131,7 @@ class Maze{
     for (let i = 0; i < this.content.length; i++) {
       for (let j = 0; j < this.content[i].length; j++) {
         if (this.content[i][j] == option) return {x: j, y: i};
-      }  
+      }
     }
   }
   markOnSquare(ctx, position, txt) {

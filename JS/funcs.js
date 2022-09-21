@@ -118,6 +118,12 @@ mazeInit = () => {
   // }
 }
 
+getElement = selector => {
+  const element = document.querySelector(selector);
+
+  return element;
+}
+
 sleep = milliseconds => {
   const date = Date.now();
   let currentDate = null;

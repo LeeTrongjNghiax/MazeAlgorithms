@@ -1,3 +1,18 @@
+class Input{
+  constructor(value) {
+    this.value = value;
+  }
+}
+
+class InputRange extends Input{
+  constructor(value, min, max, step) {
+    super(value);
+    this.min = min;
+    this.max = max;
+    this.step = step;
+  }
+}
+
 class Player{
   constructor(side, positions, pointTo, speeds, color) {
     this.side = side;

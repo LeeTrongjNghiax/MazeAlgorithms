@@ -1,5 +1,5 @@
 :root {
-  --cvSide: 600px;
+  --cvSide: 400px;
   --controllerWidth: 400px;
 }
 html {
@@ -29,57 +29,40 @@ body {
   padding: 10px;
   font-size: 15px;
 }
-
 .controllerTitle {
   width: 100%;
   display: flex;
 }
-
 .controllerTitle > button {
   border: 1px solid white;
   background-color: black;
   padding: 2%;
   margin: 2%;
 }
-
 #mazeControllerContent {
   display: none;
 }
-
 #ncp1ControllerContent {
   display: none;
 }
-
 #ncp2ControllerContent {
   display: none;
 }
-
 button {
   padding: 10px;
   color: white;
   font-family: monospace;
 }
-
 select {
   background-color: black;
   color: white;
 }
-
 button.newMaze {
   width: 100%;
   font-size: 30px;
   background-color: green;
   border: none;
 }
-
-button.startStop {
-  background-color: blue;
-}
-
-button.restart {
-  background-color: red;
-}
-
-button.tracing {
-  background-color: #505050;
-}
+button.startStop { background-color: blue; }
+button.restart { background-color: red; }
+button.tracing { background-color: #505050; }

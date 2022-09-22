@@ -6,11 +6,6 @@ const directions = ["U", "D", "L", "R"];
 
 const cvSide = getComputedStyle(document.documentElement).getPropertyValue('--cvSide').slice(0, -2);
 
-const cv = document.querySelector("#cv");
-cv.width = cvSide;
-cv.height = cvSide;
-const ctx = cv.getContext("2d");
-
 let m;
 
 let pathRatio;

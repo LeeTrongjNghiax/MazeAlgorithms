@@ -1,5 +1,5 @@
 loop = () => {
-  requestAnimationFrame(loop);
+  // requestAnimationFrame(loop);
   
   ctx.clearRect(0, 0, cv.width, cv.height);
   
@@ -51,8 +51,9 @@ loop = () => {
   sleep(player2.speed);
   player2.draw(ctx, maze.wS, maze.pS);
 
-  // interval++;
+  console.log(getFrontierCells(maze.content, player.positions, 1));
 }
 
+mazeInit();
 loop();
 // playerJourney(solution);

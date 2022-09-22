@@ -6,8 +6,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maze</title>
 
-  <script src="JS/funcs.js"></script>
-  <script src="JS/classes.js"></script>
+  <script src="JS/inits/classes.js"></script>
+  <script src="JS/inits/init.js"></script>
+
+  <script src="JS/functions/frontEnd.js"></script>
+  <script src="JS/functions/miscellaneous.js"></script>
+
+  <script src="JS/functions/mazes/mazes.js"></script>
+  <script src="JS/functions/mazes/mazeGenerators.js"></script>
+  <script src="JS/functions/mazes/mazeSolvers.js"></script>
 
   <link rel="stylesheet" href="CSS/style.css">
 </head>
@@ -44,7 +51,7 @@
               <th><label for="slMazeStartPosition">Start Position: </label></th>
               <td>
                 <select id="slMazeStartPosition">
-                  <option value="R" selected>Random</option>
+                  <option value="Rand" selected>Random</option>
                   <option value="U">Top</option>
                   <option value="D">Bottom</option>
                   <option value="L">Left</option>
@@ -59,7 +66,7 @@
               <th><label for="slMazeEndPosition">End Position: </label></th>
               <td>
                 <select id="slMazeEndPosition">
-                  <option value="R" selected>Random</option>
+                  <option value="Rand" selected>Random</option>
                   <option value="U">Top</option>
                   <option value="D">Bottom</option>
                   <option value="L">Left</option>
@@ -79,7 +86,7 @@
             <tr>
               <th><label for="inpMazeWidth">Width: </label></th>
               <td><p id="resultMazeWidth">41</p></td>
-              <td><input id="inpMazeWidth" type="range" value="41" min="3" max="299" step="2"></td>
+              <td><input id="inpMazeWidth" type="range"></td>
             </tr>
   
             <tr>
@@ -197,8 +204,8 @@
     </div>
   </div>
 
-  <script src="JS/init.js"></script>
-  <script src="JS/loop.js"></script>
+  <script src="JS/inits/webInit.js"></script>
+  <script src="JS/loops/mazeLoop.js"></script>
   <script src="JS/eventListeners.js"></script>
 </body>
 </html>

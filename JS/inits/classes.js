@@ -1,12 +1,13 @@
 class Input{
-  constructor(value) {
+  constructor(id, value) {
+    this.id = id;
     this.value = value;
   }
 }
 
 class InputRange extends Input{
-  constructor(value, min, max, step) {
-    super(value);
+  constructor(id, value, min, max, step) {
+    super(id, value);
     this.min = min;
     this.max = max;
     this.step = step;

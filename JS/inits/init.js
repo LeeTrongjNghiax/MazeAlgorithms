@@ -4,7 +4,10 @@ const S = 2; // Start
 const E = 3; // End
 const directions = ["U", "D", "L", "R"];
 
-const cvSide = getComputedStyle(document.documentElement).getPropertyValue('--cvSide').slice(0, -2);
+const cvSide = parseFloat(
+  getComputedStyle(document.documentElement)
+    .getPropertyValue('--cvSide')
+      .slice(0, -2) )
 
 let m;
 

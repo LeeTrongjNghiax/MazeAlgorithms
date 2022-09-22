@@ -1,24 +1,24 @@
 mazeInit = () => {
   m = primAlgMazeGenerator({
-    x: document.querySelector("#inpMazeWidth").value, 
-    y: document.querySelector("#inpMazeHeight").value
+    x: parseFloat(getElement("#inpMazeWidth").value), 
+    y: parseFloat(getElement("#inpMazeHeight").value)
   });
   
-  pathRatio =  document.querySelector("#inpMazePathSide").value;
-  wallRatio = -document.querySelector("#inpMazeWallSide").value;
+  pathRatio =  parseFloat(getElement("#inpMazePathSide").value);
+  wallRatio = -parseFloat(getElement("#inpMazeWallSide").value);
   
-  pathColor = document.querySelector("#inpMazePathColor").value;
-  wallColor = document.querySelector("#inpMazeWallColor").value;
-  startColor = document.querySelector("#inpMazeStartColor").value;
-  endColor = document.querySelector("#inpMazeEndColor").value;
+  pathColor = getElement("#inpMazePathColor").value;
+  wallColor = getElement("#inpMazeWallColor").value;
+  startColor = getElement("#inpMazeStartColor").value;
+  endColor = getElement("#inpMazeEndColor").value;
   
-  player1Speed = document.querySelector("#inpNpc1Speed").value;
-  player1Color = document.querySelector("#inpNpc1Color").value;
-  player1TracingColor = document.querySelector("#inpNpc1TracingColor").value;
+  player1Speed = parseFloat(getElement("#inpNpc1Speed").value);
+  player1Color = getElement("#inpNpc1Color").value;
+  player1TracingColor = getElement("#inpNpc1TracingColor").value;
   
-  player2Speed = document.querySelector("#inpNpc2Speed").value;
-  player2Color = document.querySelector("#inpNpc2Color").value;
-  player2TracingColor = document.querySelector("#inpNpc2TracingColor").value;
+  player2Speed = parseFloat(getElement("#inpNpc2Speed").value);
+  player2Color = getElement("#inpNpc2Color").value;
+  player2TracingColor = getElement("#inpNpc2TracingColor").value;
   
   let side = Math.max(m.length, m[0].length);
   
@@ -26,6 +26,7 @@ mazeInit = () => {
     [ [ (side + 1) / 2, (side - 1) / 2 ], 
       [ wallRatio, pathRatio] ], [ [cvSide], [0] ]
   );
+  console.log(result);
 
   let pS = result.y;
   let wS = result.x;

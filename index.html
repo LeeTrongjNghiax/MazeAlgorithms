@@ -6,6 +6,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Maze</title>
 
+  <link rel="stylesheet" href="CSS/style.css">
+
   <script src="JS/inits/classes.js"></script>
   <script src="JS/inits/init.js"></script>
 
@@ -15,8 +17,6 @@
   <script src="JS/functions/mazes/mazes.js"></script>
   <script src="JS/functions/mazes/mazeGenerators.js"></script>
   <script src="JS/functions/mazes/mazeSolvers.js"></script>
-
-  <link rel="stylesheet" href="CSS/style.css">
 </head>
 <body>
   <div id="container">
@@ -85,52 +85,52 @@
           <table>
             <tr>
               <th><label for="inpMazeWidth">Width: </label></th>
-              <td><p id="resultMazeWidth">41</p></td>
+              <td><p id="resultMazeWidth"></p></td>
               <td><input id="inpMazeWidth" type="range"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazeHeight">Height: </label></th>
-              <td><p id="resultMazeHeight">41</p></td>
-              <td><input id="inpMazeHeight" type="range" value="41" min="3" max="299" step="2"></td>
+              <td><p id="resultMazeHeight"></p></td>
+              <td><input id="inpMazeHeight" type="range"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazePathSide">Path Side Ratio: </label></th>
-              <td><p id="resultMazePathSide">1</p></td>
-              <td><input id="inpMazePathSide" type="range" value="1" min="1" max="10" step="1"></td>
+              <td><p id="resultMazePathSide"></p></td>
+              <td><input id="inpMazePathSide" type="range"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazeWallSide">Wall Side Ratio: </label></th>
-              <td><p id="resultMazeWallSide">8</p></td>
-              <td><input id="inpMazeWallSide" type="range" value="8" min="1" max="10" step="1"></td>
+              <td><p id="resultMazeWallSide"></p></td>
+              <td><input id="inpMazeWallSide" type="range"></td>
             </tr>
           </table>
   
           <table>
             <tr>
               <th><label for="inpMazePathColor">Path Color: </label></th>
-              <td><p id="resultMazePathColor">#202020</p></td>
-              <td><input id="inpMazePathColor" type="color" value="#202020"></td>
+              <td><p id="resultMazePathColor"></p></td>
+              <td><input id="inpMazePathColor" type="color"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazeWallColor">Wall Color: </label></th>
-              <td><p id="resultMazeWallColor">#000000</p></td>
-              <td><input id="inpMazeWallColor" type="color" value="#000000"></td>
+              <td><p id="resultMazeWallColor"></p></td>
+              <td><input id="inpMazeWallColor" type="color"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazeStartColor">Start Color: </label></th>
-              <td><p id="resultMazeStartColor">#202020</p></td>
-              <td><input id="inpMazeStartColor" type="color" value="#ffff00"></td>
+              <td><p id="resultMazeStartColor"></p></td>
+              <td><input id="inpMazeStartColor" type="color"></td>
             </tr>
   
             <tr>
               <th><label for="inpMazeEndColor">End Color: </label></th>
-              <td><p id="resultMazeEndColor">#ffffff</p></td>
-              <td><input id="inpMazeEndColor" type="color" value="#ffffff"></td>
+              <td><p id="resultMazeEndColor"></p></td>
+              <td><input id="inpMazeEndColor" type="color"></td>
             </tr>
           </table>
         </div>
@@ -150,20 +150,20 @@
           <table>
             <tr>
               <th><label for="inpNpc1Speed">Speed: </label></th>
-              <td><p id="resultNpc1Speed">1</p></td>
-              <td><input id="inpNpc1Speed" type="range" value="0" min="0" max="3000" step="1"></td>
+              <td><p id="resultNpc1Speed"></p></td>
+              <td><input id="inpNpc1Speed" type="range"></td>
             </tr>
 
             <tr>
               <th><label for="inpNpc1Color">Color: </label></th>
-              <td><p id="resultNpc1Color">#FF0000</p></td>
-              <td><input id="inpNpc1Color" type="color" value="#FF0000"></td>
+              <td><p id="resultNpc1Color"></p></td>
+              <td><input id="inpNpc1Color" type="color"></td>
             </tr>
 
             <tr>
               <th><label for="inpNpc1TracingColor">Tracing Color: </label></th>
-              <td><p id="resultNpc1TracingColor">#FF0000</p></td>
-              <td><input id="inpNpc1TracingColor" type="color" value="#FF0000"></td>
+              <td><p id="resultNpc1TracingColor"></p></td>
+              <td><input id="inpNpc1TracingColor" type="color"></td>
             </tr>
           </table>
         </div>
@@ -183,20 +183,20 @@
           <table>
             <tr>
               <th><label for="inpNpc2Speed">Speed: </label></th>
-              <td><p id="resultNpc2Speed">1</p></td>
-              <td><input id="inpNpc2Speed" type="range" value="0" min="0" max="3000" step="1"></td>
+              <td><p id="resultNpc2Speed"></p></td>
+              <td><input id="inpNpc2Speed" type="range"></td>
             </tr>
 
             <tr>
               <th><label for="inpNpc2Color">Color: </label></th>
-              <td><p id="resultNpc2Color">#FFA500</p></td>
-              <td><input id="inpNpc2Color" type="color" value="#FFA500"></td>
+              <td><p id="resultNpc2Color"></p></td>
+              <td><input id="inpNpc2Color" type="color"></td>
             </tr>
 
             <tr>
               <th><label for="inpNpc2TracingColor">Tracing Color: </label></th>
-              <td><p id="resultNpc2TracingColor">#FFA500</p></td>
-              <td><input id="inpNpc2TracingColor" type="color" value="#FFA500"></td>
+              <td><p id="resultNpc2TracingColor"></p></td>
+              <td><input id="inpNpc2TracingColor" type="color"></td>
             </tr>
           </table>
         </div>

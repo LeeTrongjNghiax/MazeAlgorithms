@@ -26,7 +26,6 @@ mazeInit = () => {
     [ [ (side + 1) / 2, (side - 1) / 2 ], 
       [ wallRatio, pathRatio] ], [ [cvSide], [0] ]
   );
-  console.log(result);
 
   let pS = result.y;
   let wS = result.x;
@@ -44,11 +43,10 @@ mazeInit = () => {
   )
   
   let startPosition = directions[randomInt(0, directions.length - 1)];
-  let start = getRandomEntrancePosition(
-    maze.content, 
-    startPosition, 
-    B
-  );
+  let start = maze.getRandomEntrancePosition(
+    startPosition,
+    [B],
+  )
   maze.setEntrance(start, S);
   
   let endPosition = directions[randomInt(0, directions.length - 1)];
@@ -57,10 +55,10 @@ mazeInit = () => {
     while (endPosition.localeCompare(startPosition) == 0)
       endPosition = directions[randomInt(0, directions.length - 1)];
   }
-  let end = getRandomEntrancePosition(
-    maze.content, 
+  let end = maze.getRandomEntrancePosition(
     endPosition,
-    B
+    [B],
+    [S]
   )
   maze.setEntrance(end, E);
   
@@ -85,8 +83,6 @@ mazeInit = () => {
     player2Speed, 
     player2Color
   );
-  
-  interval = 0;
   
   traceSidePs = (maze.pS / 3) / 3 * 2;
   traceSideWs = (maze.wS / 3) / 3 * 2;
@@ -167,37 +163,4 @@ getConnectedCell = (cell1, cell2, distance) => {
     return {x: cell1.x, y: (cell1.y + cell2.y) / 2}
 
   return null;
-}
-
-getRandomEntrancePosition = (maze, direction, exclude = B) => {
-  let x, y;
-
-  switch (direction) {
-    case "U":
-      y = 0;
-      x = randomInt(1, maze[0].length - 2);
-      while (maze[y + 1][x] == exclude)
-        x = randomInt(1, maze[0].length - 2);
-      break;
-    case "D":
-      y = maze.length - 1;
-      x = randomInt(1, maze[0].length - 2);
-      while (maze[y - 1][x] == exclude)
-        x = randomInt(1, maze[0].length - 2);
-      break;
-    case "L":
-      y = randomInt(1, maze.length - 2);
-      x = 0;
-      while (maze[y][x + 1] == exclude)
-        y = randomInt(1, maze.length - 2);
-      break;
-    case "R":
-      y = randomInt(1, maze.length - 2);
-      x = maze[0].length - 1;
-      while (maze[y][x - 1] == exclude)
-        y = randomInt(1, maze.length - 2);
-      break;
-  }
-
-  return {x, y, pointTo: oppositeDirectionOf(direction)};
 }

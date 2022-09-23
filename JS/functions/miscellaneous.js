@@ -1,5 +1,12 @@
 randomInt = (start, stop) => Math.round(Math.random() * (stop - start) + start);
 
+randomOdd = (start, stop) => {
+  let random = Math.round(Math.random() * (stop - start) + start);
+  while (random % 2 == 0)
+    random = Math.round(Math.random() * (stop - start) + start);
+  return random;
+}
+
 randomFloat = (start, stop) => Math.random() * (stop - start) + start;
 
 isNumeric = str => {

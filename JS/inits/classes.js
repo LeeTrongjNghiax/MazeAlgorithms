@@ -140,8 +140,41 @@ class Maze{
     this.wS = wS;
     this.colors = colors;
   }
-  setEntrance(position, option) {
-    this.content[position.y][position.x] = option;
+  getRandomEntrancePosition(direction, excludeNearBy = [B], exclude = [4]) {
+    let x, y;
+  
+    switch (direction) {
+      case "U":
+        y = 0;
+        x = randomOdd(1, this.content[0].length - 2);
+        while (excludeNearBy.includes(this.content[y + 1][x]) || 
+              exclude.includes(this.content[y][x]))
+          x = randomOdd(1, this.content[0].length - 2);
+        break;
+      case "D":
+        y = this.content.length - 1;
+        x = randomOdd(1, this.content[0].length - 2);
+        while (excludeNearBy.includes(this.content[y - 1][x]) || 
+              exclude.includes(this.content[y][x]))
+          x = randomOdd(1, this.content[0].length - 2);
+        break;
+      case "L":
+        y = randomOdd(1, this.content.length - 2);
+        x = 0;
+        while (excludeNearBy.includes(this.content[y][x + 1]) || 
+              exclude.includes(this.content[y][x]))
+          y = randomOdd(1, this.content.length - 2);
+        break;
+      case "R":
+        y = randomOdd(1, this.content.length - 2);
+        x = this.content[0].length - 1;
+        while (excludeNearBy.includes(this.content[y][x - 1]) || 
+              exclude.includes(this.content[y][x]))
+          y = randomOdd(1, this.content.length - 2);
+        break;
+    }
+  
+    return {x, y, pointTo: oppositeDirectionOf(direction)};
   }
   getPosition(option) {
     for (let i = 0; i < this.content.length; i++) {
@@ -149,6 +182,9 @@ class Maze{
         if (this.content[i][j] == option) return {x: j, y: i};
       }
     }
+  }
+  setEntrance(position, option) {
+    this.content[position.y][position.x] = option;
   }
   markOnSquare(ctx, position, txt) {
     let x;

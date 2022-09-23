@@ -1,3 +1,18 @@
+generateMazeFullOfWall = size => {
+  let maze = Array(size.y).fill().map(
+    () => Array(size.x).fill(B)
+  );
+
+  for (let i = 0; i < maze.length; i++) {
+    for (let j = 0; j < maze[i].length; j++) {
+      if (i % 2 != 0 && j % 2 != 0)
+        maze[i][j] = P;
+    }
+  }
+
+  return maze;
+}
+
 primAlgMazeGenerator = size => {
   // Init
 
@@ -9,16 +24,12 @@ primAlgMazeGenerator = size => {
   for (let i = 0; i < size.y; i++) {
     maze[i] = [];
     for (let j = 0; j < size.x; j++) {
-      // if (i == 0 || i == size.y - 1 || j == 0 || j == size.x - 1)
-      //   maze[i][j] = -1;
-      // else 
         maze[i][j] = B;
     }
   }
 
   // Pick a random cell
-  // let initCell = {x: randomInt(1, size.x - 2), y: randomInt(1, size.y - 2)}
-  let initCell = {x: 1, y: 1}
+  let initCell = {x: randomOdd(1, maze[0].length - 2), y: randomOdd(1, maze.length - 2)}
 
   // Set it to be a passage
   maze[initCell.y][initCell.x] = P;
@@ -64,4 +75,8 @@ primAlgMazeGenerator = size => {
   }
 
   return maze;
+}
+
+randomizedDepthFirstSearchMazeGenerator = size => {
+
 }

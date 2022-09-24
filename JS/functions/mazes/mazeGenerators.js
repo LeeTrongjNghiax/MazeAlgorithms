@@ -13,7 +13,7 @@ generateMazeFullOfWall = size => {
   return maze;
 }
 
-primAlgMazeGenerator = size => {
+primAlgMazeGenerator = (size, ctx) => {
   // Init
 
   let maze = [];

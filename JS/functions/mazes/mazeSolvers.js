@@ -110,7 +110,7 @@ wallFollowerAlgOneStep = (player, maze, direction, trace) => {
   
 }
 
-drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSidePsWs, x, y, pS, wS, color) => {
+drawWallFollowerAlgTrace = (ctx, traceString, traceSidePs, traceSideWs, x, y, pS, wS, color) => {
   let xL, yL, dx, dy;
   dx = []; dy = []; xL = []; yL = [];
   

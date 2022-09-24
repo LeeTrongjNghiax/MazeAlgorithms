@@ -83,6 +83,8 @@ mazeInit = () => {
     player2Speed, 
     player2Color
   );
+
+  w = new WallFollowerAlgTrace(maze, player);
   
   traceSidePs = (maze.pS / 3) / 3 * 2;
   traceSideWs = (maze.wS / 3) / 3 * 2;
@@ -102,7 +104,7 @@ mazeInit = () => {
       trace2[i][j] = '0000000000000000';
     }
   }
-  
+
   // let solution = wallFollowerAlg(player, maze, "R").split('')
   
   // let playerJourney = function(solution) {

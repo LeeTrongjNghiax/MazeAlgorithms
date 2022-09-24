@@ -250,3 +250,708 @@ class Maze{
     }
   }
 }
+
+class WallFollowerAlgTrace{
+  constructor(maze, player) {
+    this.maze = maze;
+    this.player = player;
+    let traceSide = {
+      pS: (this.maze.pS / 3) / 3 * 2,
+      wS: (this.maze.wS / 3) / 3 * 2
+    };
+    this.trace = Array(this.maze.content.length).fill().map(
+      () => Array(this.maze.content[0].length).fill().map(
+        () => Array(5).fill().map(
+          () => Array(5).fill(0)
+        )
+      )
+    )
+  }
+  markTrace(position, ...tracePositions) {
+    for (let i = 0; i < tracePositions.length; i++) {
+      this.trace[position.y][position.x][tracePositions[i].y][tracePositions[i].x] = 1;
+    }
+  }
+  drawWallFollowerAlgTrace(ctx) {
+    let xL, yL, dx, dy;
+    let interval = 0;
+    dx = []; dy = []; xL = []; yL = [];
+    
+    ctx.fillStyle = this.player.color;
+  
+    for (let y = 0; y < this.trace.length; y++) {
+      for (let x = 0; x < this.trace[y].length; x++) {
+        for (let k = 0; k < this.trace[y][x].length; k++) {
+          for (let l = 0; l < this.trace[y][x][k].length; l++) {
+            if (this.trace[y][x][k][l] == 1) {
+              if (k == 0) {
+                // 0
+                if (l == 1) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 1
+                if (l == 3) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+              }
+              if (k == 1) {
+                // 7
+                if (l == 0) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 8
+                if (l == 1) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 9
+                if (l == 2) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 10
+                if (l == 3) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 2
+                if (l == 4) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+              }
+              if (k == 2) {
+                // 15
+                if (l == 1) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 11
+                if (l == 3) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+              }
+              if (k == 3) {
+                // 6
+                if (l == 0) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 14
+                if (l == 1) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 13
+                if (l == 2) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 12
+                if (l == 3) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 3
+                if (l == 4) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+              }
+              if (k == 4) {
+                // 5
+                if (l == 1) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+                // 4
+                if (l == 3) {
+                  if (y % 2 == 0) {
+                    if (x % 2 == 0) {
+
+                    } else {
+
+                    }
+                  } else {
+                    if (x % 2 == 0) {
+
+                    } else {
+                      
+                    }
+                  }
+                }
+              }
+              
+              let baseX, baseY;
+              for (let i = 0; i < traceString.length; i++) {
+                if (y % 2 == 0) {
+                  baseY = (y / 2) * (this.maze.wS + this.maze.pS);
+                  if (x % 2 == 0) {
+                    baseX = (x / 2) * (this.maze.wS + this.maze.pS);
+                  } else {
+                    baseX = ((x - 1)/ 2) * (this.maze.wS + this.maze.pS);
+                  }
+                } else {
+                  baseY = ((y - 1)/ 2) * (this.maze.wS + this.maze.pS);
+                  if (x % 2 == 0) {
+                    baseX = (x / 2) * (this.maze.wS + this.maze.pS);
+                  } else {
+                    baseX = ((x - 1)/ 2) * (this.maze.wS + this.maze.pS);
+                  }
+                }
+                ctx.fillRect(
+                  baseX + dx[i], 
+                  baseY + dy[i], 
+                  xL[i], 
+                  yL[i]
+                );
+              }
+            }
+          }
+        }
+      }
+    }
+    if (traceString[0] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[0] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[0] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[0] = this.traceSide.wS;
+        // yL[0] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[0] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[0] = this.maze.wS;
+        xL[0] = this.traceSide.pS;
+        yL[0] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[0] = this.maze.wS / 3 - this.traceSide.wS;
+        dy[0] = this.maze.wS;
+        xL[0] = this.traceSide.wS;
+        yL[0] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[0] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[0] = 0;
+        xL[0] = this.traceSide.pS;
+        yL[0] = this.maze.wS / 3 - this.traceSide.wS;
+      }
+    }
+    if (traceString[1] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[1] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[1] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[1] = this.traceSide.wS;
+        // yL[1] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[1] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[1] = this.maze.wS;
+        xL[1] = this.traceSide.pS;
+        yL[1] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[1] = this.maze.wS * 2/ 3;
+        dy[1] = this.maze.wS;
+        xL[1] = this.traceSide.wS;
+        yL[1] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[1] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[1] = 0;
+        xL[1] = this.traceSide.pS;
+        yL[1] = this.maze.wS / 3 - this.traceSide.wS;
+      }
+    }
+    if (traceString[2] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[2] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[2] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[2] = this.traceSide.wS;
+        // yL[2] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[2] = this.maze.pS - (this.maze.pS / 3 - this.traceSide.pS) + this.maze.wS;
+        dy[2] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[2] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[2] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[2] = this.maze.wS * 2 / 3 + this.traceSide.wS;
+        dy[2] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[2] = this.maze.wS / 3 - this.traceSide.wS;
+        yL[2] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[2] = this.maze.pS - (this.maze.pS / 3 - this.traceSide.pS) + this.maze.wS;
+        dy[2] = this.maze.wS / 3 - this.traceSide.wS;
+        xL[2] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[2] = this.traceSide.wS;
+      }
+    }
+    if (traceString[3] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[3] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[3] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[3] = this.traceSide.wS;
+        // yL[3] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[3] = this.maze.pS - (this.maze.pS / 3 - this.traceSide.pS) + this.maze.wS;
+        dy[3] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[3] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[3] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[3] = this.maze.wS * 2 / 3 + this.traceSide.wS;
+        dy[3] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[3] = this.maze.wS / 3 - this.traceSide.wS;
+        yL[3] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[3] = this.maze.pS - (this.maze.pS / 3 - this.traceSide.pS) + this.maze.wS;
+        dy[3] = this.maze.wS * 2 / 3;
+        xL[3] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[3] = this.traceSide.wS;
+      }
+    }
+    if (traceString[4] == "1") {
+      // dx[4] = (this.maze.pS / 3 * 2);
+      // dy[4] = (this.maze.pS / 3 * 2 + this.traceSide.pS);
+      // xL[4] = this.traceSide.pS;
+      // yL[4] = this.maze.pS / 3 - this.traceSide.pS;
+  
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[4] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[4] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[4] = this.traceSide.wS;
+        // yL[4] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[4] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[4] = this.maze.pS * 2 / 3 + this.traceSide.pS + this.maze.wS;
+        xL[4] = this.traceSide.pS;
+        yL[4] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[4] = this.maze.wS * 2 / 3;
+        dy[4] = this.maze.pS * 2 / 3 + this.traceSide.pS + this.maze.wS;
+        xL[4] = this.traceSide.wS;
+        yL[4] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[4] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[4] = this.maze.wS * 2 / 3 + this.traceSide.wS;
+        xL[4] = this.traceSide.pS;
+        yL[4] = this.maze.wS / 3 - this.traceSide.wS;
+      }
+    }
+    if (traceString[5] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[5] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[5] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[5] = this.traceSide.wS;
+        // yL[5] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[5] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[5] = this.maze.pS * 2 / 3 + this.traceSide.pS + this.maze.wS;
+        xL[5] = this.traceSide.pS;
+        yL[5] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[5] = this.maze.wS / 3 - this.traceSide.wS;
+        dy[5] = this.maze.pS * 2 / 3 + this.traceSide.pS + this.maze.wS;
+        xL[5] = this.traceSide.wS;
+        yL[5] = this.maze.pS / 3 - this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[5] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[5] = this.maze.wS * 2 / 3 + this.traceSide.wS;
+        xL[5] = this.traceSide.pS;
+        yL[5] = this.maze.wS / 3 - this.traceSide.wS;
+      }
+    }
+    if (traceString[6] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[6] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[6] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[6] = this.traceSide.wS;
+        // yL[6] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[6] = this.maze.wS;
+        dy[6] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[6] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[6] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[6] = 0;
+        dy[6] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[6] = this.maze.wS / 3 - this.traceSide.wS;
+        yL[6] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[6] = this.maze.wS;
+        dy[6] = this.maze.wS * 2 / 3;
+        xL[6] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[6] = this.traceSide.wS;
+      }
+    }
+    if (traceString[7] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[7] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[7] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[7] = this.traceSide.wS;
+        // yL[7] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[7] = this.maze.wS;
+        dy[7] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[7] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[7] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[7] = 0;
+        dy[7] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[7] = this.maze.wS / 3 - this.traceSide.wS;
+        yL[7] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[7] = this.maze.wS;
+        dy[7] = this.maze.wS / 3 - this.traceSide.wS;
+        xL[7] = this.maze.pS / 3 - this.traceSide.pS;
+        yL[7] = this.traceSide.wS;
+      }
+    }
+    if (traceString[8] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[8] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[8] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[8] = this.traceSide.wS;
+        // yL[8] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[8] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[8] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[8] = this.traceSide.pS;
+        yL[8] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[8] = this.maze.wS / 3 - this.traceSide.wS;
+        dy[8] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[8] = this.traceSide.wS;
+        yL[8] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[8] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[8] = this.maze.wS / 3 - this.traceSide.wS;
+        xL[8] = this.traceSide.pS;
+        yL[8] = this.traceSide.wS;
+      }
+    }
+    if (traceString[9] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[9] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[9] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[9] = this.traceSide.wS;
+        // yL[9] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[9] = this.maze.pS / 3 + this.maze.wS;
+        dy[9] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[9] = this.maze.pS / 3;
+        yL[9] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[9] = this.maze.wS / 3;
+        dy[9] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[9] = this.maze.wS / 3;
+        yL[9] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[9] = this.maze.pS / 3 + this.maze.wS;
+        dy[9] = this.maze.wS / 3 - this.traceSide.wS;
+        xL[9] = this.maze.pS / 3;
+        yL[9] = this.traceSide.wS;
+      }
+    }
+    if (traceString[10] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[10] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[10] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[10] = this.traceSide.wS;
+        // yL[10] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[10] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[10] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[10] = this.traceSide.pS;
+        yL[10] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[10] = this.maze.wS * 2 / 3;
+        dy[10] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        xL[10] = this.traceSide.wS;
+        yL[10] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[10] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[10] = this.maze.wS / 3 - this.traceSide.wS;
+        xL[10] = this.traceSide.pS;
+        yL[10] = this.traceSide.wS;
+      }
+    }
+    if (traceString[11] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[11] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[11] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[11] = this.traceSide.wS;
+        // yL[11] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[11] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[11] = this.maze.pS / 3 + this.maze.wS;
+        xL[11] = this.traceSide.pS;
+        yL[11] = this.maze.pS / 3;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[11] = this.maze.wS * 2 / 3;
+        dy[11] = this.maze.pS / 3 + this.maze.wS;
+        xL[11] = this.traceSide.wS;
+        yL[11] = this.maze.pS / 3;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[11] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[11] = this.maze.wS / 3;
+        xL[11] = this.traceSide.pS;
+        yL[11] = this.maze.wS / 3;
+      }
+    }
+    if (traceString[12] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[12] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[12] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[12] = this.traceSide.wS;
+        // yL[12] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[12] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[12] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[12] = this.traceSide.pS;
+        yL[12] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[12] = this.maze.wS * 2 / 3;
+        dy[12] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[12] = this.traceSide.wS;
+        yL[12] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[12] = this.maze.pS * 2 / 3 + this.maze.wS;
+        dy[12] = this.maze.wS * 2 / 3;
+        xL[12] = this.traceSide.pS;
+        yL[12] = this.traceSide.wS;
+      }
+    }
+    if (traceString[13] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[13] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[13] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[13] = this.traceSide.wS;
+        // yL[13] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[13] = this.maze.pS / 3 + this.maze.wS;
+        dy[13] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[13] = this.maze.pS / 3;
+        yL[13] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[13] = this.maze.wS / 3;
+        dy[13] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[13] = this.maze.wS / 3;
+        yL[13] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[13] = this.maze.pS / 3 + this.maze.wS;
+        dy[13] = this.maze.wS * 2 / 3;
+        xL[13] = this.maze.pS / 3;
+        yL[13] = this.traceSide.wS;
+      }
+    }
+    if (traceString[14] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[14] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[14] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[14] = this.traceSide.wS;
+        // yL[14] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[14] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[14] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[14] = this.traceSide.pS;
+        yL[14] = this.traceSide.pS;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[14] = this.maze.wS / 3 - this.traceSide.wS;
+        dy[14] = this.maze.pS * 2 / 3 + this.maze.wS;
+        xL[14] = this.traceSide.wS;
+        yL[14] = this.traceSide.pS;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[14] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[14] = this.maze.wS * 2 / 3;
+        xL[14] = this.traceSide.pS;
+        yL[14] = this.traceSide.wS;
+      }
+    }
+    if (traceString[15] == "1") {
+      if ((y % 2 == 0) && (x % 2 == 0)) {
+        // dx[15] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // dy[15] = this.maze.pS / 3 - this.traceSide.wS + this.maze.wS;
+        // xL[15] = this.traceSide.wS;
+        // yL[15] = this.traceSide.wS;
+      } else if ((y % 2 != 0) && (x % 2 != 0)) {
+        dx[15] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[15] = this.maze.pS / 3 + this.maze.wS;
+        xL[15] = this.traceSide.pS;
+        yL[15] = this.maze.pS / 3;
+      } else if (y % 2 != 0 && x % 2 == 0) {
+        dx[15] = this.maze.wS / 3 - this.traceSide.wS;
+        dy[15] = this.maze.pS / 3 + this.maze.wS;
+        xL[15] = this.traceSide.wS;
+        yL[15] = this.maze.pS / 3;
+      } else if (y % 2 == 0 && x % 2 != 0) {
+        dx[15] = this.maze.pS / 3 - this.traceSide.pS + this.maze.wS;
+        dy[15] = this.maze.wS / 3;
+        xL[15] = this.traceSide.pS;
+        yL[15] = this.maze.wS / 3;
+      }
+    } 
+  }
+}

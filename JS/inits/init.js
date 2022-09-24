@@ -40,3 +40,15 @@ let traceSideWs;
 
 let trace = [];
 let trace2 = [];
+
+let w;
+
+let a = 1;
+let b = 0;
+let c = 1;
+
+switch (JSON.stringify(1)) {
+  case JSON.stringify(a): console.log(a);
+  case JSON.stringify(b): console.log(b);
+  case JSON.stringify(c): console.log(c);
+}

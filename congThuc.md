@@ -18,8 +18,8 @@ $$ \sum{y_i - y_{i-1}} = y_i - y_1 $$
 ## Tốc độ phát triển liên hoàn:
 $$ t_i = {y_i \over y_{i-1}} $$
 - $ t_i $: tốc độ phát triển liên hoàn
-- $ y_i $: mức độ chỉ tiêu ở kì nghiên cứu $
-- $ y_{i-1} $: mức độ chỉ tiêu ở kì liền kề trước kì nghiên cứu $
+- $ y_i $: mức độ chỉ tiêu ở kì nghiên cứu
+- $ y_{i-1} $: mức độ chỉ tiêu ở kì liền kề trước kì nghiên cứu
 
 ## Tốc độ phát triển định gốc:
 $$ T_i = {y_i \over y_1} $$

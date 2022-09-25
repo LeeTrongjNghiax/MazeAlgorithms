@@ -115,12 +115,12 @@ let slMazeEndPosition_values = [
   },
 ];
 
-let inpMazeWidth = new InputRange("inpMazeWidth", 51, 3, 299, 2);
-let inpMazeHeight = new InputRange("inpMazeHeight", 51, 3, 299, 2);
+let inpMazeWidth = new InputRange("inpMazeWidth", 41, 3, 299, 2);
+let inpMazeHeight = new InputRange("inpMazeHeight", 41, 3, 299, 2);
 let inpMazePathSide = new InputRange("inpMazePathSide", 1, 1, 10, 1);
 let inpMazeWallSide = new InputRange("inpMazeWallSide", 10, 1, 10, 1);
 
-let inpMazePathColor = new Input("inpMazePathColor", "#202020");
+let inpMazePathColor = new Input("inpMazePathColor", "#ffffff");
 let inpMazeWallColor = new Input("inpMazeWallColor", "#000000");
 let inpMazeStartColor = new Input("inpMazeStartColor", "#ffff00");
 let inpMazeEndColor = new Input("inpMazeEndColor", "#ffffff");

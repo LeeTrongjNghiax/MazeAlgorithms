@@ -17,6 +17,7 @@ loop = () => {
       E: endColor,
       P: pathColor
     },
+    maze2.walls
   )
   maze.draw(ctx);
   // maze.markMaze(ctx, {

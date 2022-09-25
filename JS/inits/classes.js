@@ -134,11 +134,12 @@ class Player{
 }
 
 class Maze{
-  constructor(content, pS, wS, colors) {
+  constructor(content, pS, wS, colors, walls) {
     this.content = content;
     this.pS = pS;
     this.wS = wS;
     this.colors = colors;
+    this.walls = walls;
   }
   getRandomEntrancePosition(direction, excludeNearBy = [B], exclude = [4]) {
     let x, y;
@@ -247,6 +248,21 @@ class Maze{
         else if (i % 2 == 0 && j % 2 != 0) 
           ctx.fillRect(((j - 1) / 2) * (wS + pS) + wS, (i / 2) * (wS + pS), pS, wS);
       }
+    }
+
+    ctx.fillStyle = "red";
+    for (let i = 0; i < this.walls.length; i++) {
+      if ((this.walls[i].y % 2 == 0) && (this.walls[i].x % 2 == 0))
+        ctx.fillRect((this.walls[i].x / 2) * (wS + pS), (this.walls[i].y / 2) * (wS + pS), wS, wS);
+
+      else if ((this.walls[i].y % 2 != 0) && (this.walls[i].x % 2 != 0)) 
+        ctx.fillRect(((this.walls[i].x - 1)/ 2) * (wS + pS) + wS, ((this.walls[i].y - 1) / 2) * (wS + pS) + wS, pS, pS);
+
+      else if (this.walls[i].y % 2 != 0 && this.walls[i].x % 2 == 0) 
+        ctx.fillRect((this.walls[i].x / 2) * (wS + pS), ((this.walls[i].y - 1) / 2) * (wS + pS) + wS, wS, pS);
+        
+      else if (this.walls[i].y % 2 == 0 && this.walls[i].x % 2 != 0) 
+        ctx.fillRect(((this.walls[i].x - 1) / 2) * (wS + pS) + wS, (this.walls[i].y / 2) * (wS + pS), pS, wS);
     }
   }
 }

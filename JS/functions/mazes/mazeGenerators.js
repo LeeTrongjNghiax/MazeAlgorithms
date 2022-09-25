@@ -21,64 +21,45 @@ generateMazeFullOfWalls = size => {
   return maze;
 }
 
-primAlgMazeGenerator = (maze, walls) => {
+primAlgMazeGeneratorModified = (maze, cells) => {
   // Init
+  let neighborsOfRandomCell;
 
-  let neighborsOfRandomWall = null;
+  // Remove duplicate unvisited cells list
+  cells = unique( cells, (a, b) => (a.x === b.x) & (a.y === b.y) );
 
-  // // Pick a random cell
-  // let initCell = {
-  //   x: randomOdd(1, maze[0].length - 2), 
-  //   y: randomOdd(1, maze.length - 2)
-  // }
+  // Pick a random cell from unvisited cells list.
+  let randomCellIndex = randomInt(0, cells.length - 1);
+  let randomCell = cells[randomCellIndex];
 
-  // // Set it to be a passage
-  // maze[initCell.y][initCell.x] = P;
+  if (typeof randomCell !== 'undefined') {
+    // Remove it from the unvisited cells list
+    cells.splice(randomCellIndex, 1);
 
-  // // Compute its frontier cells
-  // let wallsOfInitCell = getFrontierCells(maze, initCell, 2);
+    // Get neighbours of random cell
+    neighborsOfRandomCell = getNeighbourCells(maze, randomCell, 2);
 
-  // // Add the walls of the cell to the wall list.
-  // walls.push(...wallsOfInitCell);
-
-  // Remove duplicate walls
-  walls = unique( walls, (a, b) => (a.x === b.x) & (a.y === b.y) );
-
-  // Pick a random frontier cell from walls.
-  let randomWallIndex = randomInt(0, walls.length - 1);
-  let randomWall = walls[randomWallIndex];
-
-  if (typeof randomWall !== 'undefined') {
-    // Remove it from the walls list
-    walls.splice(randomWallIndex, 1);
-
-    // Get neighbours of randomWall
-    neighborsOfRandomWall = null;
-    neighborsOfRandomWall = getNeighbourCells(maze, {x: randomWall.x, y: randomWall.y}, 2);
-
-    // Connect randomWall with random neighbour from neighborsOfRandomWall
-    if (neighborsOfRandomWall.length != 0) {
+    // Connect random cell with random neighbour from neighborsOfRandomCell
+    if (neighborsOfRandomCell.length != 0) {
 
       // Pick a random neighbor
-      let randomNeighborIndex = randomInt(0, neighborsOfRandomWall.length - 1);
+      let randomNeighborIndex = randomInt(0, neighborsOfRandomCell.length - 1);
 
-      // Connect the frontier cell with the neighbor
-      let connectedCell = getConnectedCell(randomWall, neighborsOfRandomWall[randomNeighborIndex], 2);
+      // Connect the random cell with the neighbor
+      let connectedCell = getConnectedCell(
+        randomCell, 
+        neighborsOfRandomCell[randomNeighborIndex], 2
+      );
       if (connectedCell != null) {
         maze[connectedCell.y][connectedCell.x] = P;
-        maze[randomWall.y][randomWall.x] = P;
-
-        ctx.clearRect(0, 0, cv.width, cv.height);
-
-        cv.width = cvSide;
-        cv.height = cvSide;
+        maze[randomCell.y][randomCell.x] = P;
       }
     }
-    // Compute the frontier cells of the chosen frontier cell and add them to the frontier collection
-    let wallsOfRandomWall = getFrontierCells(maze, randomWall, 2);
-    walls.push(...wallsOfRandomWall);
+    // Compute the unvisited cells of the chosen random cell and add them to the unvisited cells list.
+    let cellsOfRandomCell = getFrontierCells(maze, randomCell, 2);
+    cells.push(...cellsOfRandomCell);
   }
-  return {maze, walls};
+  return {maze, cells};
 }
 
 randomizedDepthFirstSearchMazeGenerator = size => {

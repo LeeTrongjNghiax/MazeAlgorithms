@@ -6,7 +6,7 @@ loop = () => {
   cv.width = cvSide;
   cv.height = cvSide;
 
-  maze2 = primAlgMazeGenerator(maze2.maze, maze2.walls);
+  maze2 = primAlgMazeGeneratorModified(maze2.maze, maze2.cells);
   maze = new Maze(
     maze2.maze,
     pS, 
@@ -17,9 +17,10 @@ loop = () => {
       E: endColor,
       P: pathColor
     },
-    maze2.walls
+    maze2.cells
   )
   maze.draw(ctx);
+  // sleep(5000);
   // maze.markMaze(ctx, {
   //   content: "", 
   //   color: "white", 

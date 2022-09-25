@@ -40,20 +40,8 @@ mazeInit = () => {
   let fc = getFrontierCells(m, initCell, 2);
   maze2 = {
     maze: m,
-    walls: fc
+    cells: fc
   }
-
-  // maze = new Maze(
-  //   m,
-  //   pS, 
-  //   wS,
-  //   {
-  //     B: wallColor,
-  //     S: startColor,
-  //     E: endColor,
-  //     P: pathColor
-  //   },
-  // )
   
   // let startPosition = directions[randomInt(0, directions.length - 1)];
   // let start = maze.getRandomEntrancePosition(

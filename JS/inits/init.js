@@ -41,6 +41,6 @@ let trace = [];
 let trace2 = [];
 
 let maze_primAlgMazeGeneratorModified;
-let maze2_primAlgMazeGenerator;
+let maze2_randomizedDepthFirstSearchMazeGenerator;
 
 let pS, wS;

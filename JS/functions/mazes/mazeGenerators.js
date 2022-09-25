@@ -21,45 +21,6 @@ generateMazeFullOfWalls = size => {
   return maze;
 }
 
-primAlgMazeGenerator = (maze, walls) => {
-  // Init
-  let neighborCellsOfRandomWall = [];
-
-  // Remove duplicate walls list
-  walls = unique( walls, (a, b) => (a.x === b.x) & (a.y === b.y) );
-
-  // Pick a random wall from walls list.
-  let randomWallIndex = randomInt(0, walls.length - 1);
-  let randomWall = walls[randomWallIndex];
-
-  if (typeof randomWall !== 'undefined') {
-    // Remove it from the walls list
-    walls.splice(randomWallIndex, 1);
-
-    neighborCellsOfRandomWall = getNeighbourCellsFromWall(maze, randomWall);
-
-    if (neighborCellsOfRandomWall != null) {
-      // Make the wall a passage
-      maze[randomWall.y][randomWall.x] = P;
-
-      // Get random neighbor cell
-      let randomNeighborIndex = randomInt(0, neighborCellsOfRandomWall.length - 1);
-
-      // Mark the unvisited cell as part of the maze.
-      let nextCell = getNextCell(
-        neighborCellsOfRandomWall[randomNeighborIndex],
-        randomWall,
-      );
-      maze[nextCell.y][nextCell.x] = P;
-
-      // Compute the walls of that cell and add them to the walls list.
-      let wallsOfrandomNeighborCell = getFrontierCells(maze, nextCell, 1);
-      walls.push(...wallsOfrandomNeighborCell);
-    }
-  }
-  return {maze, walls};
-}
-
 primAlgMazeGeneratorModified = (maze, cells) => {
   // Init
   let neighborsOfRandomCell;
@@ -101,6 +62,30 @@ primAlgMazeGeneratorModified = (maze, cells) => {
   return {maze, cells};
 }
 
-randomizedDepthFirstSearchMazeGenerator = size => {
+randomizedDepthFirstSearchMazeGenerator = (maze, stack) => {
+  // While the stack is not empty
+  if (stack.length != 0) {
+    // Pop a cell from the stack and make it a current cell
+    let currentCell = stack.pop();
 
+    let neighborsOfCurrentCell = getFrontierCells(maze, currentCell, 2);
+    // If the current cell has any neighbours which have not been visited
+    if (neighborsOfCurrentCell != 0) {
+      // Push the current cell to the stack
+      stack.push(currentCell);
+
+      // Choose one of the unvisited neighbours
+      let randomIndex = randomInt(0, neighborsOfCurrentCell.length - 1);
+      let neighbor = neighborsOfCurrentCell[randomIndex];
+
+      // Remove the wall between the current cell and the chosen cell
+      let connectedCell = getConnectedCell(currentCell, neighbor, 2);
+      maze[connectedCell.y][connectedCell.x] = P;
+
+      // Mark the chosen cell as visited and push it to the stack
+      maze[neighbor.y][neighbor.x] = P;
+      stack.push(neighbor)
+    }
+  }
+  return {maze, stack}
 }

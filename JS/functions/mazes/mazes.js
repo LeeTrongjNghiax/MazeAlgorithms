@@ -52,9 +52,9 @@ mazeInit = () => {
     y: randomOdd(1, m2.length - 2)
   };
   m2[initCell2.y][initCell2.x] = P;
-  maze2_primAlgMazeGenerator = {
+  maze2_randomizedDepthFirstSearchMazeGenerator = {
     maze: m2,
-    walls: getFrontierCells(m2, initCell2, 1)
+    stack: [initCell2]
   }
 
   // let startPosition = directions[randomInt(0, directions.length - 1)];
@@ -195,22 +195,28 @@ getNextCell = (cell1, cell2) => {
 }
 
 getNeighbourCellsFromWall = (maze, wall) => {
-  let neighbourCells = []
-
-  if ( (wall.x % 2 == 0 && wall.y % 2 == 0) ||
-       (wall.x % 2 != 0 && wall.y % 2 != 0) )
-    return null;
+  let neighbourCells = [];
   
   if (wall.x % 2 != 0 && wall.y % 2 == 0) {
-    if (wall.x - 1 > 0) neighbourCells.push({x: wall.x - 1, y: wall.y})
-    if (wall.x + 1 < maze.length - 1) neighbourCells.push({x: wall.x + 1, y: wall.y})
+    if (wall.y - 1 > 0)
+      if (maze[wall.y - 1][wall.x] == 1) 
+        neighbourCells.push({x: wall.x, y: wall.y - 1})
+
+    if (wall.y + 1 < maze[0].length - 1)
+      if (maze[wall.y + 1][wall.x] == 1) 
+        neighbourCells.push({x: wall.x, y: wall.y + 1})
   }
   if (wall.x % 2 == 0 && wall.y % 2 != 0) {
-    if (wall.y - 1 > 0) neighbourCells.push({x: wall.x, y: wall.y - 1})
-    if (wall.y + 1 < maze[0].length - 1) neighbourCells.push({x: wall.x, y: wall.y + 1})
+    if (wall.x - 1 > 0) 
+      if (maze[wall.y][wall.x - 1] == 1) 
+        neighbourCells.push({x: wall.x - 1, y: wall.y})
+
+    if (wall.x + 1 < maze.length - 1) 
+      if (maze[wall.y][wall.x + 1] == 1) 
+        neighbourCells.push({x: wall.x + 1, y: wall.y})
   }
   
-  return null;
+  return neighbourCells;
 }
 
 setBoundaries = (maze, option) => {

@@ -25,22 +25,23 @@ loop = () => {
   // )
   // maze.draw(ctx);
 
-  maze2_primAlgMazeGenerator = primAlgMazeGenerator(
-    maze2_primAlgMazeGenerator.maze, 
-    maze2_primAlgMazeGenerator.walls
+  maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
+    maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
+    maze2_randomizedDepthFirstSearchMazeGenerator.stack
   );
 
   maze2 = new Maze(
-    maze2_primAlgMazeGenerator.maze,
+    maze2_randomizedDepthFirstSearchMazeGenerator.maze,
     pS, 
     wS,
     {
       B: wallColor,
       S: startColor,
       E: endColor,
-      P: pathColor
+      P: pathColor,
+      T: "green"
     },
-    maze2_primAlgMazeGenerator.walls
+    maze2_randomizedDepthFirstSearchMazeGenerator.stack
   )
   maze2.draw(ctx);
 

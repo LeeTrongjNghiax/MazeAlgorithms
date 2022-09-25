@@ -134,12 +134,13 @@ class Player{
 }
 
 class Maze{
-  constructor(content, pS, wS, colors, cells = null) {
+  constructor(content, pS, wS, colors, cells = null, stack = null) {
     this.content = content;
     this.pS = pS;
     this.wS = wS;
     this.colors = colors;
     this.cells = cells;
+    this.stack = stack;
   }
   getRandomEntrancePosition(direction, excludeNearBy = [B], exclude = [4]) {
     let x, y;
@@ -251,7 +252,7 @@ class Maze{
     }
 
     if (this.cells != null) {
-      ctx.fillStyle = "red";
+      ctx.fillStyle = this.colors.T;
       for (let i = 0; i < this.cells.length; i++) {
         if ((this.cells[i].y % 2 == 0) && (this.cells[i].x % 2 == 0))
           ctx.fillRect((this.cells[i].x / 2) * (wS + pS), (this.cells[i].y / 2) * (wS + pS), wS, wS);

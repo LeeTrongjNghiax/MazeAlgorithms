@@ -134,12 +134,12 @@ class Player{
 }
 
 class Maze{
-  constructor(content, pS, wS, colors, walls) {
+  constructor(content, pS, wS, colors, cells = null) {
     this.content = content;
     this.pS = pS;
     this.wS = wS;
     this.colors = colors;
-    this.walls = walls;
+    this.cells = cells;
   }
   getRandomEntrancePosition(direction, excludeNearBy = [B], exclude = [4]) {
     let x, y;
@@ -250,19 +250,21 @@ class Maze{
       }
     }
 
-    ctx.fillStyle = "red";
-    for (let i = 0; i < this.walls.length; i++) {
-      if ((this.walls[i].y % 2 == 0) && (this.walls[i].x % 2 == 0))
-        ctx.fillRect((this.walls[i].x / 2) * (wS + pS), (this.walls[i].y / 2) * (wS + pS), wS, wS);
+    if (this.cells != null) {
+      ctx.fillStyle = "red";
+      for (let i = 0; i < this.cells.length; i++) {
+        if ((this.cells[i].y % 2 == 0) && (this.cells[i].x % 2 == 0))
+          ctx.fillRect((this.cells[i].x / 2) * (wS + pS), (this.cells[i].y / 2) * (wS + pS), wS, wS);
 
-      else if ((this.walls[i].y % 2 != 0) && (this.walls[i].x % 2 != 0)) 
-        ctx.fillRect(((this.walls[i].x - 1)/ 2) * (wS + pS) + wS, ((this.walls[i].y - 1) / 2) * (wS + pS) + wS, pS, pS);
+        else if ((this.cells[i].y % 2 != 0) && (this.cells[i].x % 2 != 0)) 
+          ctx.fillRect(((this.cells[i].x - 1)/ 2) * (wS + pS) + wS, ((this.cells[i].y - 1) / 2) * (wS + pS) + wS, pS, pS);
 
-      else if (this.walls[i].y % 2 != 0 && this.walls[i].x % 2 == 0) 
-        ctx.fillRect((this.walls[i].x / 2) * (wS + pS), ((this.walls[i].y - 1) / 2) * (wS + pS) + wS, wS, pS);
-        
-      else if (this.walls[i].y % 2 == 0 && this.walls[i].x % 2 != 0) 
-        ctx.fillRect(((this.walls[i].x - 1) / 2) * (wS + pS) + wS, (this.walls[i].y / 2) * (wS + pS), pS, wS);
+        else if (this.cells[i].y % 2 != 0 && this.cells[i].x % 2 == 0) 
+          ctx.fillRect((this.cells[i].x / 2) * (wS + pS), ((this.cells[i].y - 1) / 2) * (wS + pS) + wS, wS, pS);
+          
+        else if (this.cells[i].y % 2 == 0 && this.cells[i].x % 2 != 0) 
+          ctx.fillRect(((this.cells[i].x - 1) / 2) * (wS + pS) + wS, (this.cells[i].y / 2) * (wS + pS), pS, wS);
+      }
     }
   }
 }

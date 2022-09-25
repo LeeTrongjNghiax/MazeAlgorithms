@@ -9,8 +9,6 @@ const cvSide = parseFloat(
     .getPropertyValue('--cvSide')
       .slice(0, -2) )
 
-let m;
-
 let pathRatio;
 let wallRatio;
 
@@ -20,6 +18,7 @@ let startColor;
 let endColor;
 
 let maze;
+let maze2;
 
 let player1Speed;
 let player1Color;
@@ -41,7 +40,7 @@ let traceSideWs;
 let trace = [];
 let trace2 = [];
 
-let w;
-let maze2;
+let maze_primAlgMazeGeneratorModified;
+let maze2_primAlgMazeGenerator;
 
 let pS, wS;

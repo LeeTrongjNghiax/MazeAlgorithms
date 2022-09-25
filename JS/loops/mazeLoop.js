@@ -6,9 +6,32 @@ loop = () => {
   cv.width = cvSide;
   cv.height = cvSide;
 
-  maze2 = primAlgMazeGeneratorModified(maze2.maze, maze2.cells);
-  maze = new Maze(
-    maze2.maze,
+  // maze_primAlgMazeGeneratorModified = primAlgMazeGeneratorModified(
+  //   maze_primAlgMazeGeneratorModified.maze, 
+  //   maze_primAlgMazeGeneratorModified.cells
+  // );
+
+  // maze = new Maze(
+  //   maze_primAlgMazeGeneratorModified.maze,
+  //   pS, 
+  //   wS,
+  //   {
+  //     B: wallColor,
+  //     S: startColor,
+  //     E: endColor,
+  //     P: pathColor
+  //   },
+  //   maze_primAlgMazeGeneratorModified.cells
+  // )
+  // maze.draw(ctx);
+
+  maze2_primAlgMazeGenerator = primAlgMazeGenerator(
+    maze2_primAlgMazeGenerator.maze, 
+    maze2_primAlgMazeGenerator.walls
+  );
+
+  maze2 = new Maze(
+    maze2_primAlgMazeGenerator.maze,
     pS, 
     wS,
     {
@@ -17,9 +40,10 @@ loop = () => {
       E: endColor,
       P: pathColor
     },
-    maze2.cells
+    maze2_primAlgMazeGenerator.walls
   )
-  maze.draw(ctx);
+  maze2.draw(ctx);
+
   // sleep(5000);
   // maze.markMaze(ctx, {
   //   content: "", 

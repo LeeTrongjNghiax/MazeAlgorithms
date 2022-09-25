@@ -37,12 +37,26 @@ mazeInit = () => {
     y: randomOdd(1, m.length - 2)
   };
   m[initCell.y][initCell.x] = P;
-  let fc = getFrontierCells(m, initCell, 2);
-  maze2 = {
+  maze_primAlgMazeGeneratorModified = {
     maze: m,
-    cells: fc
+    cells: getFrontierCells(m, initCell, 2)
   }
-  
+
+  let m2 = generateMazeFullOfWalls({
+    x: parseInt(getElement("#inpMazeHeight").value),
+    y: parseInt(getElement("#inpMazeWidth").value)
+  });
+  m2 = setBoundaries(m2, -1);
+  let initCell2 = {
+    x: randomOdd(1, m2[0].length - 2), 
+    y: randomOdd(1, m2.length - 2)
+  };
+  m2[initCell2.y][initCell2.x] = P;
+  maze2_primAlgMazeGenerator = {
+    maze: m2,
+    walls: getFrontierCells(m2, initCell2, 1)
+  }
+
   // let startPosition = directions[randomInt(0, directions.length - 1)];
   // let start = maze.getRandomEntrancePosition(
   //   startPosition,
@@ -153,17 +167,59 @@ getFrontierCells = (maze, cell, distance) => getNearbyCells(maze, cell, 0, dista
 getNeighbourCells = (maze, cell, distance) => getNearbyCells(maze, cell, 1, distance);
 
 getConnectedCell = (cell1, cell2, distance) => {
-  if (cell1.x + distance == cell2.x && cell1.y == cell2.y) 
+  if (cell1.x + distance == cell2.x && cell1.y == cell2.y ||
+      cell1.x - distance == cell2.x && cell1.y == cell2.y) 
     return {x: (cell1.x + cell2.x) / 2, y: cell1.y}
 
-  if (cell2.x + distance == cell1.x && cell1.y == cell2.y) 
-    return {x: (cell1.x + cell2.x) / 2, y: cell1.y}
-
-  if (cell2.x == cell1.x && cell1.y + distance == cell2.y) 
-    return {x: cell1.x, y: (cell1.y + cell2.y) / 2}
-
-  if (cell2.x == cell1.x && cell1.y - distance == cell2.y) 
+  if (cell2.x == cell1.x && cell1.y + distance == cell2.y ||
+      cell2.x == cell1.x && cell1.y - distance == cell2.y) 
     return {x: cell1.x, y: (cell1.y + cell2.y) / 2}
 
   return null;
+}
+
+getNextCell = (cell1, cell2) => {
+  if (cell1.x + 1 == cell2.x && cell1.y == cell2.y) 
+    return {x: cell1.x + 2, y: cell1.y}
+
+  if (cell1.x - 1 == cell2.x && cell1.y == cell2.y) 
+    return {x: cell1.x - 2, y: cell1.y}
+
+  if (cell2.x == cell1.x && cell1.y + 1 == cell2.y) 
+    return {x: cell1.x, y: cell1.y + 2}
+
+  if (cell2.x == cell1.x && cell1.y - 1 == cell2.y) 
+    return {x: cell1.x, y: cell1.y - 2}
+
+  return null;
+}
+
+getNeighbourCellsFromWall = (maze, wall) => {
+  let neighbourCells = []
+
+  if ( (wall.x % 2 == 0 && wall.y % 2 == 0) ||
+       (wall.x % 2 != 0 && wall.y % 2 != 0) )
+    return null;
+  
+  if (wall.x % 2 != 0 && wall.y % 2 == 0) {
+    if (wall.x - 1 > 0) neighbourCells.push({x: wall.x - 1, y: wall.y})
+    if (wall.x + 1 < maze.length - 1) neighbourCells.push({x: wall.x + 1, y: wall.y})
+  }
+  if (wall.x % 2 == 0 && wall.y % 2 != 0) {
+    if (wall.y - 1 > 0) neighbourCells.push({x: wall.x, y: wall.y - 1})
+    if (wall.y + 1 < maze[0].length - 1) neighbourCells.push({x: wall.x, y: wall.y + 1})
+  }
+  
+  return null;
+}
+
+setBoundaries = (maze, option) => {
+  for (let i = 0; i < maze.length; i++) {
+    for (let j = 0; j < maze[i].length; j++) {
+      if (i == 0 || i == maze.length - 1 ||
+          j == 0 || j == maze[i].length - 1)
+        maze[i][j] = option;
+    }
+  }
+  return maze;
 }

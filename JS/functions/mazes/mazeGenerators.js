@@ -21,6 +21,45 @@ generateMazeFullOfWalls = size => {
   return maze;
 }
 
+primAlgMazeGenerator = (maze, walls) => {
+  // Init
+  let neighborCellsOfRandomWall = [];
+
+  // Remove duplicate walls list
+  walls = unique( walls, (a, b) => (a.x === b.x) & (a.y === b.y) );
+
+  // Pick a random wall from walls list.
+  let randomWallIndex = randomInt(0, walls.length - 1);
+  let randomWall = walls[randomWallIndex];
+
+  if (typeof randomWall !== 'undefined') {
+    // Remove it from the walls list
+    walls.splice(randomWallIndex, 1);
+
+    neighborCellsOfRandomWall = getNeighbourCellsFromWall(maze, randomWall);
+
+    if (neighborCellsOfRandomWall != null) {
+      // Make the wall a passage
+      maze[randomWall.y][randomWall.x] = P;
+
+      // Get random neighbor cell
+      let randomNeighborIndex = randomInt(0, neighborCellsOfRandomWall.length - 1);
+
+      // Mark the unvisited cell as part of the maze.
+      let nextCell = getNextCell(
+        neighborCellsOfRandomWall[randomNeighborIndex],
+        randomWall,
+      );
+      maze[nextCell.y][nextCell.x] = P;
+
+      // Compute the walls of that cell and add them to the walls list.
+      let wallsOfrandomNeighborCell = getFrontierCells(maze, nextCell, 1);
+      walls.push(...wallsOfrandomNeighborCell);
+    }
+  }
+  return {maze, walls};
+}
+
 primAlgMazeGeneratorModified = (maze, cells) => {
   // Init
   let neighborsOfRandomCell;

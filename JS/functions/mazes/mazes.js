@@ -1,9 +1,4 @@
 mazeInit = () => {
-  m = primAlgMazeGenerator({
-    x: parseFloat(getElement("#inpMazeWidth").value), 
-    y: parseFloat(getElement("#inpMazeHeight").value)
-  });
-  
   pathRatio =  parseFloat(getElement("#inpMazePathSide").value);
   wallRatio = -parseFloat(getElement("#inpMazeWallSide").value);
   
@@ -20,90 +15,108 @@ mazeInit = () => {
   player2Color = getElement("#inpNpc2Color").value;
   player2TracingColor = getElement("#inpNpc2TracingColor").value;
   
-  let side = Math.max(m.length, m[0].length);
+  let side = Math.max(
+    getElement("#inpMazeHeight").value, 
+    getElement("#inpMazeWidth").value
+  );
   
   let result = solvingSystemsLinearEquations2Unknowns(
     [ [ (side + 1) / 2, (side - 1) / 2 ], 
       [ wallRatio, pathRatio] ], [ [cvSide], [0] ]
   );
 
-  let pS = result.y;
-  let wS = result.x;
+  pS = result.y;
+  wS = result.x;
   
-  maze = new Maze(
-    m,
-    pS, 
-    wS,
-    {
-      B: wallColor,
-      S: startColor,
-      E: endColor,
-      P: pathColor
-    },
-  )
-  
-  let startPosition = directions[randomInt(0, directions.length - 1)];
-  let start = maze.getRandomEntrancePosition(
-    startPosition,
-    [B],
-  )
-  maze.setEntrance(start, S);
-  
-  let endPosition = directions[randomInt(0, directions.length - 1)];
-  if (maze.content.length == 3 || maze.content[0].length == 3 ||
-      maze.content.length == 5 || maze.content[0].length == 5) {
-    while (endPosition.localeCompare(startPosition) == 0)
-      endPosition = directions[randomInt(0, directions.length - 1)];
+  let m = generateMazeFullOfWalls({
+    x: parseInt(getElement("#inpMazeHeight").value),
+    y: parseInt(getElement("#inpMazeWidth").value)
+  });
+  let initCell = {
+    x: randomOdd(1, m[0].length - 2), 
+    y: randomOdd(1, m.length - 2)
+  };
+  m[initCell.y][initCell.x] = P;
+  let fc = getFrontierCells(m, initCell, 2);
+  maze2 = {
+    maze: m,
+    walls: fc
   }
-  let end = maze.getRandomEntrancePosition(
-    endPosition,
-    [B],
-    [S]
-  )
-  maze.setEntrance(end, E);
-  
-  player = new Player(
-    maze.wS * 0.75, 
-    {
-      x: maze.getPosition(S).x, 
-      y: maze.getPosition(S).y
-    }, 
-    start.pointTo, 
-    player1Speed, 
-    player1Color
-  );
-  
-  player2 = new Player(
-    maze.wS * 0.75, 
-    {
-      x: maze.getPosition(S).x, 
-      y: maze.getPosition(S).y
-    }, 
-    start.pointTo, 
-    player2Speed, 
-    player2Color
-  );
 
-  w = new WallFollowerAlgTrace(maze, player);
+  // maze = new Maze(
+  //   m,
+  //   pS, 
+  //   wS,
+  //   {
+  //     B: wallColor,
+  //     S: startColor,
+  //     E: endColor,
+  //     P: pathColor
+  //   },
+  // )
   
-  traceSidePs = (maze.pS / 3) / 3 * 2;
-  traceSideWs = (maze.wS / 3) / 3 * 2;
+  // let startPosition = directions[randomInt(0, directions.length - 1)];
+  // let start = maze.getRandomEntrancePosition(
+  //   startPosition,
+  //   [B],
+  // )
+  // maze.setEntrance(start, S);
   
-  trace = [];
-  for (let i = 0; i < maze.content.length; i++) {
-    trace[i] = [];
-    for (let j = 0; j < maze.content[i].length; j++) {
-      trace[i][j] = '0000000000000000';
-    }
-  }
+  // let endPosition = directions[randomInt(0, directions.length - 1)];
+  // if (maze.content.length == 3 || maze.content[0].length == 3 ||
+  //     maze.content.length == 5 || maze.content[0].length == 5) {
+  //   while (endPosition.localeCompare(startPosition) == 0)
+  //     endPosition = directions[randomInt(0, directions.length - 1)];
+  // }
+  // let end = maze.getRandomEntrancePosition(
+  //   endPosition,
+  //   [B],
+  //   [S]
+  // )
+  // maze.setEntrance(end, E);
   
-  trace2 = [];
-  for (let i = 0; i < maze.content.length; i++) {
-    trace2[i] = [];
-    for (let j = 0; j < maze.content[i].length; j++) {
-      trace2[i][j] = '0000000000000000';
-    }
-  }
+  // player = new Player(
+  //   maze.wS * 0.75, 
+  //   {
+  //     x: maze.getPosition(S).x, 
+  //     y: maze.getPosition(S).y
+  //   }, 
+  //   start.pointTo, 
+  //   player1Speed, 
+  //   player1Color
+  // );
+  
+  // player2 = new Player(
+  //   maze.wS * 0.75, 
+  //   {
+  //     x: maze.getPosition(S).x, 
+  //     y: maze.getPosition(S).y
+  //   }, 
+  //   start.pointTo, 
+  //   player2Speed, 
+  //   player2Color
+  // );
+
+  // w = new WallFollowerAlgTrace(maze, player);
+  
+  // traceSidePs = (maze.pS / 3) / 3 * 2;
+  // traceSideWs = (maze.wS / 3) / 3 * 2;
+  
+  // trace = [];
+  // for (let i = 0; i < maze.content.length; i++) {
+  //   trace[i] = [];
+  //   for (let j = 0; j < maze.content[i].length; j++) {
+  //     trace[i][j] = '0000000000000000';
+  //   }
+  // }
+  
+  // trace2 = [];
+  // for (let i = 0; i < maze.content.length; i++) {
+  //   trace2[i] = [];
+  //   for (let j = 0; j < maze.content[i].length; j++) {
+  //     trace2[i][j] = '0000000000000000';
+  //   }
+  // }
 
   // let solution = wallFollowerAlg(player, maze, "R").split('')
   

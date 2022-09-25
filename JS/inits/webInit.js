@@ -115,8 +115,8 @@ let slMazeEndPosition_values = [
   },
 ];
 
-let inpMazeWidth = new InputRange("inpMazeWidth", 50, 3, 299, 2);
-let inpMazeHeight = new InputRange("inpMazeHeight", 50, 3, 299, 2);
+let inpMazeWidth = new InputRange("inpMazeWidth", 51, 3, 299, 2);
+let inpMazeHeight = new InputRange("inpMazeHeight", 51, 3, 299, 2);
 let inpMazePathSide = new InputRange("inpMazePathSide", 1, 1, 10, 1);
 let inpMazeWallSide = new InputRange("inpMazeWallSide", 10, 1, 10, 1);
 

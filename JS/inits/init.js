@@ -19,6 +19,7 @@ let endColor;
 
 let maze;
 let maze2;
+let maze3;
 
 let player1Speed;
 let player1Color;
@@ -42,5 +43,6 @@ let trace2 = [];
 
 let maze_primAlgMazeGeneratorModified;
 let maze2_randomizedDepthFirstSearchMazeGenerator;
+let maze3_aldousBroderMazeGenerator;
 
 let pS, wS;

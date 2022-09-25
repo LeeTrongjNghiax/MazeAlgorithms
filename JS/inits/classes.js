@@ -134,13 +134,13 @@ class Player{
 }
 
 class Maze{
-  constructor(content, pS, wS, colors, cells = null, stack = null) {
+  constructor(content, pS, wS, colors, cells = null, currentCell = null) {
     this.content = content;
     this.pS = pS;
     this.wS = wS;
     this.colors = colors;
     this.cells = cells;
-    this.stack = stack;
+    this.currentCell = currentCell;
   }
   getRandomEntrancePosition(direction, excludeNearBy = [B], exclude = [4]) {
     let x, y;
@@ -266,6 +266,21 @@ class Maze{
         else if (this.cells[i].y % 2 == 0 && this.cells[i].x % 2 != 0) 
           ctx.fillRect(((this.cells[i].x - 1) / 2) * (wS + pS) + wS, (this.cells[i].y / 2) * (wS + pS), pS, wS);
       }
+    }
+
+    if (this.currentCell != null) {
+      ctx.fillStyle = this.colors.T;
+      if ((this.currentCell.y % 2 == 0) && (this.currentCell.x % 2 == 0))
+        ctx.fillRect((this.currentCell.x / 2) * (wS + pS), (this.currentCell.y / 2) * (wS + pS), wS, wS);
+    
+      else if ((this.currentCell.y % 2 != 0) && (this.currentCell.x % 2 != 0)) 
+        ctx.fillRect(((this.currentCell.x - 1)/ 2) * (wS + pS) + wS, ((this.currentCell.y - 1) / 2) * (wS + pS) + wS, pS, pS);
+    
+      else if (this.currentCell.y % 2 != 0 && this.currentCell.x % 2 == 0) 
+        ctx.fillRect((this.currentCell.x / 2) * (wS + pS), ((this.currentCell.y - 1) / 2) * (wS + pS) + wS, wS, pS);
+        
+      else if (this.currentCell.y % 2 == 0 && this.currentCell.x % 2 != 0) 
+        ctx.fillRect(((this.currentCell.x - 1) / 2) * (wS + pS) + wS, (this.currentCell.y / 2) * (wS + pS), pS, wS);      
     }
   }
 }

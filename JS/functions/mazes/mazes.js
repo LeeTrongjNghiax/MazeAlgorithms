@@ -46,7 +46,6 @@ mazeInit = () => {
     x: parseInt(getElement("#inpMazeHeight").value),
     y: parseInt(getElement("#inpMazeWidth").value)
   });
-  m2 = setBoundaries(m2, -1);
   let initCell2 = {
     x: randomOdd(1, m2[0].length - 2), 
     y: randomOdd(1, m2.length - 2)
@@ -55,6 +54,20 @@ mazeInit = () => {
   maze2_randomizedDepthFirstSearchMazeGenerator = {
     maze: m2,
     stack: [initCell2]
+  }
+
+  let m3 = generateMazeFullOfWalls({
+    x: parseInt(getElement("#inpMazeHeight").value),
+    y: parseInt(getElement("#inpMazeWidth").value)
+  });
+  let initCell3 = {
+    x: randomOdd(1, m3[0].length - 2), 
+    y: randomOdd(1, m3.length - 2)
+  };
+  m3[initCell3.y][initCell3.x] = P;
+  maze3_aldousBroderMazeGenerator = {
+    maze: m3,
+    currentCell: initCell3
   }
 
   // let startPosition = directions[randomInt(0, directions.length - 1)];
@@ -140,23 +153,23 @@ oppositeDirectionOf = direction => {
   return null;
 }
 
-getNearbyCells = (maze, cell, option, distance) => {
+getNearbyCells = (maze, cell, option = null, distance) => {
   let nearbyCells = [];
 
   if (cell.y + distance <= maze.length - 1) 
-    if (maze[cell.y + distance][cell.x] == option) 
+    if (maze[cell.y + distance][cell.x] == option || option == null) 
       nearbyCells.push({x: cell.x, y: cell.y + distance});
 
   if (cell.y >= distance) 
-    if (maze[cell.y - distance][cell.x] == option) 
+    if (maze[cell.y - distance][cell.x] == option || option == null) 
       nearbyCells.push({x: cell.x, y: cell.y - distance});
 
   if (cell.x + distance <= maze[0].length - 1) 
-    if (maze[cell.y][cell.x + distance] == option) 
+    if (maze[cell.y][cell.x + distance] == option || option == null) 
       nearbyCells.push({x: cell.x + distance, y: cell.y});
 
   if (cell.x >= distance) 
-    if (maze[cell.y][cell.x - distance] == option) 
+    if (maze[cell.y][cell.x - distance] == option || option == null) 
       nearbyCells.push({x: cell.x - distance, y: cell.y});
 
   return nearbyCells;

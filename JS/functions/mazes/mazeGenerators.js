@@ -21,6 +21,15 @@ generateMazeFullOfWalls = size => {
   return maze;
 }
 
+isBlockedCell = maze => {
+  for (let i = 1; i < maze.length; i += 2) {
+    for (let j = 1; j < maze[i].length; j += 2) {
+      if (maze[i][j] == B) return true;
+    }
+  }
+  return false;
+}
+
 primAlgMazeGeneratorModified = (maze, cells) => {
   // Init
   let neighborsOfRandomCell;
@@ -70,7 +79,8 @@ randomizedDepthFirstSearchMazeGenerator = (maze, stack) => {
 
     let neighborsOfCurrentCell = getFrontierCells(maze, currentCell, 2);
     // If the current cell has any neighbours which have not been visited
-    if (neighborsOfCurrentCell != 0) {
+    if (neighborsOfCurrentCell.length != 0) {
+
       // Push the current cell to the stack
       stack.push(currentCell);
 
@@ -88,4 +98,37 @@ randomizedDepthFirstSearchMazeGenerator = (maze, stack) => {
     }
   }
   return {maze, stack}
+}
+
+aldousBroderMazeGenerator = (maze, currentCell) => {
+  // While there are unvisited cells
+  if (isBlockedCell(maze) && currentCell != null) {
+
+    // Get near by cells of current cell
+    let nearbyOfCurrentCell = getNearbyCells(maze, currentCell, null, 2);
+
+    // Pick a random neighbour
+    let randomIndex = randomInt(0, nearbyOfCurrentCell.length - 1);
+    let neighbor = nearbyOfCurrentCell[randomIndex];
+
+    // If the chosen neighbour has not been visited:
+    if (maze[neighbor.y][neighbor.x] == 0) {
+
+      // Remove the wall between the current cell and the chosen neighbour.
+      let connectedCell = getConnectedCell(currentCell, neighbor, 2);
+      maze[connectedCell.y][connectedCell.x] = P;
+
+      // Mark the chosen neighbour as visited.
+      maze[neighbor.y][neighbor.x] = P;
+    }
+
+    // Make the chosen neighbour the current cell.
+    if (typeof neighbor !== 'undefined') {
+      currentCell.x = neighbor.x;
+      currentCell.y = neighbor.y;
+    } else {
+      currentCell = null;
+    }
+  }
+  return {maze, currentCell}
 }

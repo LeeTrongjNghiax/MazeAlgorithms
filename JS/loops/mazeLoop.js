@@ -19,7 +19,8 @@ loop = () => {
   //     B: wallColor,
   //     S: startColor,
   //     E: endColor,
-  //     P: pathColor
+  //     P: pathColor,
+  //     T: "green"
   //   },
   //   maze_primAlgMazeGeneratorModified.cells
   // )
@@ -45,6 +46,27 @@ loop = () => {
   )
   maze2.draw(ctx);
 
+  // maze3_aldousBroderMazeGenerator = aldousBroderMazeGenerator(
+  //   maze3_aldousBroderMazeGenerator.maze, 
+  //   maze3_aldousBroderMazeGenerator.currentCell
+  // );
+
+  // maze3 = new Maze(
+  //   maze3_aldousBroderMazeGenerator.maze,
+  //   pS, 
+  //   wS,
+  //   {
+  //     B: wallColor,
+  //     S: startColor,
+  //     E: endColor,
+  //     P: pathColor,
+  //     T: "green"
+  //   },
+  //   null,
+  //   maze3_aldousBroderMazeGenerator.currentCell
+  // )
+  // maze3.draw(ctx);
+  
   // sleep(5000);
   // maze.markMaze(ctx, {
   //   content: "", 

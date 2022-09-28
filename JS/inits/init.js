@@ -17,32 +17,34 @@ let wallColor;
 let startColor;
 let endColor;
 
-let maze;
-let maze2;
-let maze3;
-
-let player1Speed;
-let player1Color;
-let player1TracingColor;
-
-let player2Speed;
-let player2Color;
-let player2TracingColor;
-
-let interval;
-let pjTimeOut;
-
-let player;
-let player2;
-
-let traceSidePs;
-let traceSideWs;
-
-let trace = [];
-let trace2 = [];
+let mazes = [];
 
 let maze_primAlgMazeGeneratorModified;
 let maze2_randomizedDepthFirstSearchMazeGenerator;
 let maze3_aldousBroderMazeGenerator;
 
 let pS, wS;
+
+let mazeGenTimeOut;
+let mazeGen = function(){
+  maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
+    maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
+    maze2_randomizedDepthFirstSearchMazeGenerator.stack
+  );
+
+  maze2 = new Maze(
+    maze2_randomizedDepthFirstSearchMazeGenerator.maze,
+    pS, 
+    wS,
+    {
+      B: wallColor,
+      S: startColor,
+      E: endColor,
+      P: pathColor,
+      T: "green"
+    },
+    maze2_randomizedDepthFirstSearchMazeGenerator.stack
+  )
+  maze2.draw(ctx);
+  mazeGenTimeOut = setTimeout(mazeGen, 500);
+}

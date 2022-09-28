@@ -1,6 +1,6 @@
 :root {
   --cvSide: 700px;
-  --controllerWidth: 400px;
+  --controllerWidth: 600px;
 }
 html {
   background-color: #000000;
@@ -25,7 +25,7 @@ body {
   height: var(--cvSide);
 }
 #controller {
-  width: 400px;
+  width: var(--controllerWidth);
   padding: 10px;
   font-size: 15px;
 }
@@ -33,15 +33,15 @@ body {
   width: 100%;
   display: flex;
 }
-.controllerTitle > button {
+.switch {
   border: 1px solid white;
   background-color: black;
   padding: 2%;
   margin: 2%;
 }
-#mazeControllerContent {
+/* #mazeControllerContent {
   display: none;
-}
+} */
 #ncp1ControllerContent {
   display: none;
 }

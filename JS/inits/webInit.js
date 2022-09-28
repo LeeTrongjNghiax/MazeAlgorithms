@@ -133,4 +133,4 @@ let inpNpc2Speed = new InputRange("inpNpc2Speed", 0, 0, 100, 1);
 let inpNpc2Color = new Input("inpNpc2Color", "#FFA500");
 let inpNpc2TracingColor = new Input("inpNpc2TracingColor", "#FFA500");
 
-createMazeForm();
+// createMazeForm();

@@ -1,23 +1,71 @@
 mazeInit = () => {
-  pathRatio =  parseFloat(getElement("#inpMazePathSide").value);
-  wallRatio = -parseFloat(getElement("#inpMazeWallSide").value);
+  pathRatio =  parseFloat(getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(3) > 
+    input
+  `).value);
+  wallRatio = -parseFloat(getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(4) > 
+    input
+  `).value);
   
-  pathColor = getElement("#inpMazePathColor").value;
-  wallColor = getElement("#inpMazeWallColor").value;
-  startColor = getElement("#inpMazeStartColor").value;
-  endColor = getElement("#inpMazeEndColor").value;
-  
-  player1Speed = parseFloat(getElement("#inpNpc1Speed").value);
-  player1Color = getElement("#inpNpc1Color").value;
-  player1TracingColor = getElement("#inpNpc1TracingColor").value;
-  
-  player2Speed = parseFloat(getElement("#inpNpc2Speed").value);
-  player2Color = getElement("#inpNpc2Color").value;
-  player2TracingColor = getElement("#inpNpc2TracingColor").value;
+  pathColor = getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(4) > 
+    ul:nth-child(2) > 
+    li:nth-child(1) > 
+    input
+  `).value;
+  wallColor =  getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(4) > 
+    ul:nth-child(2) > 
+    li:nth-child(2) > 
+    input
+  `).value;
+  startColor =  getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(4) > 
+    ul:nth-child(2) > 
+    li:nth-child(3) > 
+    input
+  `).value;
+  endColor =  getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(4) > 
+    ul:nth-child(2) > 
+    li:nth-child(4) > 
+    input
+  `).value;
   
   let side = Math.max(
-    getElement("#inpMazeHeight").value, 
-    getElement("#inpMazeWidth").value
+    getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(2) > 
+      input
+    `).value, 
+    getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(1) > 
+      input
+    `).value
   );
   
   let result = solvingSystemsLinearEquations2Unknowns(
@@ -29,8 +77,22 @@ mazeInit = () => {
   wS = result.x;
   
   let m = generateMazeFullOfWalls({
-    x: parseInt(getElement("#inpMazeHeight").value),
-    y: parseInt(getElement("#inpMazeWidth").value)
+    x: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(1) > 
+      input
+    `).value),
+    y: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(2) > 
+      input
+    `).value)
   });
   let initCell = {
     x: randomOdd(1, m[0].length - 2), 
@@ -43,8 +105,22 @@ mazeInit = () => {
   }
 
   let m2 = generateMazeFullOfWalls({
-    x: parseInt(getElement("#inpMazeHeight").value),
-    y: parseInt(getElement("#inpMazeWidth").value)
+    x: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(1) > 
+      input
+    `).value),
+    y: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(2) > 
+      input
+    `).value)
   });
   let initCell2 = {
     x: randomOdd(1, m2[0].length - 2), 
@@ -57,8 +133,22 @@ mazeInit = () => {
   }
 
   let m3 = generateMazeFullOfWalls({
-    x: parseInt(getElement("#inpMazeHeight").value),
-    y: parseInt(getElement("#inpMazeWidth").value)
+    x: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(1) > 
+      input
+    `).value),
+    y: parseInt(getElement(`#mazeController > 
+      div:nth-child(2) > 
+      ul:nth-child(1) > 
+      li:nth-child(2) > 
+      ul:nth-child(2) > 
+      li:nth-child(2) > 
+      input
+    `).value)
   });
   let initCell3 = {
     x: randomOdd(1, m3[0].length - 2), 
@@ -70,79 +160,28 @@ mazeInit = () => {
     currentCell: initCell3
   }
 
-  // let startPosition = directions[randomInt(0, directions.length - 1)];
-  // let start = maze.getRandomEntrancePosition(
-  //   startPosition,
-  //   [B],
-  // )
-  // maze.setEntrance(start, S);
+  mazeGen = function(){
+    maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
+      maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
+      maze2_randomizedDepthFirstSearchMazeGenerator.stack
+    );
   
-  // let endPosition = directions[randomInt(0, directions.length - 1)];
-  // if (maze.content.length == 3 || maze.content[0].length == 3 ||
-  //     maze.content.length == 5 || maze.content[0].length == 5) {
-  //   while (endPosition.localeCompare(startPosition) == 0)
-  //     endPosition = directions[randomInt(0, directions.length - 1)];
-  // }
-  // let end = maze.getRandomEntrancePosition(
-  //   endPosition,
-  //   [B],
-  //   [S]
-  // )
-  // maze.setEntrance(end, E);
-  
-  // player = new Player(
-  //   maze.wS * 0.75, 
-  //   {
-  //     x: maze.getPosition(S).x, 
-  //     y: maze.getPosition(S).y
-  //   }, 
-  //   start.pointTo, 
-  //   player1Speed, 
-  //   player1Color
-  // );
-  
-  // player2 = new Player(
-  //   maze.wS * 0.75, 
-  //   {
-  //     x: maze.getPosition(S).x, 
-  //     y: maze.getPosition(S).y
-  //   }, 
-  //   start.pointTo, 
-  //   player2Speed, 
-  //   player2Color
-  // );
-
-  // w = new WallFollowerAlgTrace(maze, player);
-  
-  // traceSidePs = (maze.pS / 3) / 3 * 2;
-  // traceSideWs = (maze.wS / 3) / 3 * 2;
-  
-  // trace = [];
-  // for (let i = 0; i < maze.content.length; i++) {
-  //   trace[i] = [];
-  //   for (let j = 0; j < maze.content[i].length; j++) {
-  //     trace[i][j] = '0000000000000000';
-  //   }
-  // }
-  
-  // trace2 = [];
-  // for (let i = 0; i < maze.content.length; i++) {
-  //   trace2[i] = [];
-  //   for (let j = 0; j < maze.content[i].length; j++) {
-  //     trace2[i][j] = '0000000000000000';
-  //   }
-  // }
-
-  // let solution = wallFollowerAlg(player, maze, "R").split('')
-  
-  // let playerJourney = function(solution) {
-  //   if (interval < solution.length) {
-  //     player.goOneStep(solution[interval]);
-  //     sleep(100);
-  //   }
-  //   pjTimeOut = setTimeout(playerJourney, pjSpeed);
-  //   interval++;
-  // }
+    maze2 = new Maze(
+      maze2_randomizedDepthFirstSearchMazeGenerator.maze,
+      pS, 
+      wS,
+      {
+        B: wallColor,
+        S: startColor,
+        E: endColor,
+        P: pathColor,
+        T: "green"
+      },
+      maze2_randomizedDepthFirstSearchMazeGenerator.stack
+    )
+    maze2.draw(ctx);
+    mazeGenTimeOut = setTimeout(mazeGen, 500);
+  }
 }
 
 oppositeDirectionOf = direction => {

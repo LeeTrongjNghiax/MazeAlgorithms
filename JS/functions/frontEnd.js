@@ -2,32 +2,50 @@ getElement = selector => document.querySelector(selector);
 
 createElement = element => document.createElement(element);
 
-setElementAttribute = element => {
+setElementAttribute = (element, selector) => {
   for (let property in element) {
-    getElement("#" + element.id).setAttribute(
+    getElement(selector).setAttribute(
       property, element[property]
     );
   }
 }
 
 createMazeForm = () => {
-  setElementAttribute(inpMazeWidth);
-  setElementAttribute(inpMazeHeight);
-  setElementAttribute(inpMazePathSide);
-  setElementAttribute(inpMazeWallSide);
+  setElementAttribute(inpMazeWidth, `#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(1) > 
+    input
+  `);
+  setElementAttribute(inpMazeHeight, `#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(2) > 
+    input
+  `);
+  setElementAttribute(inpMazePathSide`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(3) > 
+    input
+  `);
+  setElementAttribute(inpMazeWallSide, `#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(2) > 
+    ul:nth-child(2) > 
+    li:nth-child(4) > 
+    input
+  `);
 
   setElementAttribute(inpMazePathColor);
   setElementAttribute(inpMazeWallColor);
   setElementAttribute(inpMazeStartColor);
   setElementAttribute(inpMazeEndColor);
-
-  setElementAttribute(inpNpc1Speed);
-  setElementAttribute(inpNpc1Color);
-  setElementAttribute(inpNpc1TracingColor);
-
-  setElementAttribute(inpNpc2Speed);
-  setElementAttribute(inpNpc2Color);
-  setElementAttribute(inpNpc2TracingColor);
-
-  getElement(`#${inpMazeWidth.id}`).innerHTML = inpMazeWidth.value;
 }

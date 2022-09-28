@@ -26,26 +26,6 @@ loop = () => {
   // )
   // maze.draw(ctx);
 
-  maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
-    maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
-    maze2_randomizedDepthFirstSearchMazeGenerator.stack
-  );
-
-  maze2 = new Maze(
-    maze2_randomizedDepthFirstSearchMazeGenerator.maze,
-    pS, 
-    wS,
-    {
-      B: wallColor,
-      S: startColor,
-      E: endColor,
-      P: pathColor,
-      T: "green"
-    },
-    maze2_randomizedDepthFirstSearchMazeGenerator.stack
-  )
-  maze2.draw(ctx);
-
   // maze3_aldousBroderMazeGenerator = aldousBroderMazeGenerator(
   //   maze3_aldousBroderMazeGenerator.maze, 
   //   maze3_aldousBroderMazeGenerator.currentCell
@@ -115,4 +95,5 @@ loop = () => {
 
 mazeInit();
 loop();
+mazeGen();
 // playerJourney(solution);

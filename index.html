@@ -21,184 +21,122 @@
 <body>
   <div id="container">
     <canvas id="cv"></canvas>
+    
     <div id="controller">
       <button class="newMaze">New Maze</button>
       <div id="mazeController">
         <div class="controllerTitle">
           <h1>Maze controller</h1>
-          <button id="mazeSwitch">On/Off</button>
+          <button class="switch">On/Off</button>
         </div>
 
         <div id="mazeControllerContent">
-          <table>
-            <tr>
-              <th><label for="slMazeGenerationAlgorithm">Generation Algorithm: </label></th>
-              <td>
-                <select id="slMazeGenerationAlgorithm">
-                  <option value="DFSI">DFS Iterative</option>
-                  <option value="DFSR">DFS Recursive</option>
-                  <option value="RK">Randomized Kruskal</option>
-                  <option value="RP" selected>Randomized Prim</option>
-                  <option value="W">Wilson</option>
-                  <option value="ABR">Aldous-Broder Recursive</option>
-                  <option value="ABS">Aldous-Broder Simple</option>
-                  <option value="CA">Cellular Automaton</option>
-                </select>
-              </td>
-            </tr>
-
-            <tr>
-              <th><label for="slMazeStartPosition">Start Position: </label></th>
-              <td>
-                <select id="slMazeStartPosition">
-                  <option value="Rand" selected>Random</option>
-                  <option value="U">Top</option>
-                  <option value="D">Bottom</option>
-                  <option value="L">Left</option>
-                  <option value="R">Right</option>
-                  <option value="UD">Top or Bottom</option>
-                  <option value="LR">Left or Right</option>
-                </select>
-              </td>
-            </tr>
-
-            <tr>
-              <th><label for="slMazeEndPosition">End Position: </label></th>
-              <td>
-                <select id="slMazeEndPosition">
-                  <option value="Rand" selected>Random</option>
-                  <option value="U">Top</option>
-                  <option value="D">Bottom</option>
-                  <option value="L">Left</option>
-                  <option value="R">Right</option>
-                  <option value="UD">Top or Bottom</option>
-                  <option value="LR">Left or Right</option>
-                  <option value="SAS">Same as Start</option>
-                  <option value="OAS">Opposite as Start</option>
-                  <option value="LOS">To the left of Start</option>
-                  <option value="ROS">To the right of Start</option>
-                </select>
-              </td>
-            </tr>
-          </table>
-
-          <table>
-            <tr>
-              <th><label for="inpMazeWidth">Width: </label></th>
-              <td><p id="resultMazeWidth"></p></td>
-              <td><input id="inpMazeWidth" type="range"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazeHeight">Height: </label></th>
-              <td><p id="resultMazeHeight"></p></td>
-              <td><input id="inpMazeHeight" type="range"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazePathSide">Path Side Ratio: </label></th>
-              <td><p id="resultMazePathSide"></p></td>
-              <td><input id="inpMazePathSide" type="range"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazeWallSide">Wall Side Ratio: </label></th>
-              <td><p id="resultMazeWallSide"></p></td>
-              <td><input id="inpMazeWallSide" type="range"></td>
-            </tr>
-          </table>
-
-          <table>
-            <tr>
-              <th><label for="inpMazePathColor">Path Color: </label></th>
-              <td><p id="resultMazePathColor"></p></td>
-              <td><input id="inpMazePathColor" type="color"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazeWallColor">Wall Color: </label></th>
-              <td><p id="resultMazeWallColor"></p></td>
-              <td><input id="inpMazeWallColor" type="color"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazeStartColor">Start Color: </label></th>
-              <td><p id="resultMazeStartColor"></p></td>
-              <td><input id="inpMazeStartColor" type="color"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpMazeEndColor">End Color: </label></th>
-              <td><p id="resultMazeEndColor"></p></td>
-              <td><input id="inpMazeEndColor" type="color"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-      
-      <div id="npc1Controller">
-        <div class="controllerTitle">
-          <h1>NPC1 controller</h1>
-          <button id="npc1Switch">On/Off</button>
-        </div>
-        
-        <div id="ncp1ControllerContent">
-          <button class="startStop">Start/Stop</button>
-          <button class="restart">Restart</button>
-          <button class="tracing">Enable/Disable Tracing</button>
-
-          <table>
-            <tr>
-              <th><label for="inpNpc1Speed">Speed: </label></th>
-              <td><p id="resultNpc1Speed"></p></td>
-              <td><input id="inpNpc1Speed" type="range"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpNpc1Color">Color: </label></th>
-              <td><p id="resultNpc1Color"></p></td>
-              <td><input id="inpNpc1Color" type="color"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpNpc1TracingColor">Tracing Color: </label></th>
-              <td><p id="resultNpc1TracingColor"></p></td>
-              <td><input id="inpNpc1TracingColor" type="color"></td>
-            </tr>
-          </table>
-        </div>
-      </div>
-
-      <div id="npc2Controller">
-        <div class="controllerTitle">
-          <h1>NPC2 controller</h1>
-          <button id="npc2Switch">On/Off</button>
-        </div>
-
-        <div id="ncp2ControllerContent">
-          <button class="startStop">Start/Stop</button>
-          <button class="restart">Restart</button>
-          <button class="tracing">Enable/Disable Tracing</button>
-
-          <table>
-            <tr>
-              <th><label for="inpNpc2Speed">Speed: </label></th>
-              <td><p id="resultNpc2Speed"></p></td>
-              <td><input id="inpNpc2Speed" type="range"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpNpc2Color">Color: </label></th>
-              <td><p id="resultNpc2Color"></p></td>
-              <td><input id="inpNpc2Color" type="color"></td>
-            </tr>
-
-            <tr>
-              <th><label for="inpNpc2TracingColor">Tracing Color: </label></th>
-              <td><p id="resultNpc2TracingColor"></p></td>
-              <td><input id="inpNpc2TracingColor" type="color"></td>
-            </tr>
-          </table>
+          <ul>
+            <li>
+              <div class="controllerTitle">
+                <h1>Generation Algorithm</h1>
+                <button class="switch">On/Off</button>
+              </div>
+              <ul>
+                <li>
+                  <label for="generationAlgorithm">Algorithm to use</label>
+                  <select name="generationAlgorithm" id="generationAlgorithm">
+                    <option value="primModified">Randomized Prim's algorithm Modified</option>
+                    <option value="depthDirstSearch">Randomized depth-first search</option>
+                    <option value="aldousBroder">Aldous-Broder algorithm</option>
+                  </select>
+                </li>
+                <li>
+                  <label>Animation?</label>
+                  <button class="switch">On/Off</button>
+                </li>
+                <li>
+                  <label for="">Animation Speed: </label>
+                  <input type="range" min="0" max="5000" value="0" step="1">
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h1>Dimension</h1>
+              <ul>
+                <li>
+                  <label for="">Width: </label>
+                  <input type="range" min="1" max="499" value="41" step="2">
+                </li>
+                <li>
+                  <label for="">Height: </label>
+                  <input type="range" min="1" max="499" value="41" step="2">
+                </li>
+                <li>
+                  <label for="">Path Side: </label>
+                  <input type="range" min="1" max="20" value="1" step="1">
+                </li>
+                <li>
+                  <label for="">Wall Side: </label>
+                  <input type="range" min="1" max="20" value="10" step="1">
+                </li>
+              </ul>
+            </li>
+            <li>
+              <div class="controllerTitle">
+                <h1>Entrance</h1>
+                <button class="switch">On/Off</button>
+              </div>
+              <ul>
+                <li>
+                  <label for="">Start Position: </label>
+                  <div>
+                    <input type="checkbox" name="startPosition" value="T">
+                    <label for="">Top Border</label><br>
+                    <input type="checkbox" name="startPosition" value="B">
+                    <label for="">Bottom Border</label><br>
+                    <input type="checkbox" name="startPosition" value="R">
+                    <label for="">Right Border</label><br>
+                    <input type="checkbox" name="startPosition" value="L">
+                    <label for="">Left Border</label><br>
+                    <input type="checkbox" name="startPosition" value="M">
+                    <label for="">Middle of the Maze</label>
+                  </div>
+                </li>
+                <li>
+                  <label for="">End Position: </label>
+                  <div>
+                    <input type="checkbox" name="endPosition" value="T">
+                    <label for="">Top Border</label><br>
+                    <input type="checkbox" name="endPosition" value="B">
+                    <label for="">Bottom Border</label><br>
+                    <input type="checkbox" name="endPosition" value="R">
+                    <label for="">Right Border</label><br>
+                    <input type="checkbox" name="endPosition" value="L">
+                    <label for="">Left Border</label><br>
+                    <input type="checkbox" name="endPosition" value="M">
+                    <label for="">Middle of the Maze</label>
+                  </div>
+                </li>
+              </ul>
+            </li>
+            <li>
+              <h1>Colors</h1>
+              <ul>
+                <li>
+                  <label for="">Path Color: </label>
+                  <input type="color" value="#ffffff">
+                </li>
+                <li>
+                  <label for="">Wall Color: </label>
+                  <input type="color" value="#000000">
+                </li>
+                <li>
+                  <label for="">Start Color: </label>
+                  <input type="color" value="#ffff00">
+                </li>
+                <li>
+                  <label for="">End Color: </label>
+                  <input type="color" value="#ffffff">
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </div>
     </div>

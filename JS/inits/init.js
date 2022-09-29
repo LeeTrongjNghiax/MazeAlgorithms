@@ -23,4 +23,5 @@ let mazeAlg;
 
 let pS, wS;
 
-let mazeGenTimeOut = 500;
+let mazeAlgSpeed; 
+let mazeGenTimeOut;

@@ -1,4 +1,12 @@
 mazeInit = () => {
+  mazeAlgSpeed = parseFloat (getElement(`#mazeController > 
+    div:nth-child(2) > 
+    ul:nth-child(1) > 
+    li:nth-child(1) > 
+    ul:nth-child(2) > 
+    li:nth-child(3) > 
+    input
+  `).value);
   pathRatio =  parseFloat(getElement(`#mazeController > 
     div:nth-child(2) > 
     ul:nth-child(1) > 
@@ -138,7 +146,7 @@ mazeInit = () => {
         mazeAlg.cells
       )
       maze.draw(ctx);
-      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
   } else if (alg == "depthDirstSearch") {
     mazeAlg = {
@@ -165,7 +173,7 @@ mazeInit = () => {
         mazeAlg.stack
       )
       maze.draw(ctx);
-      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
   } else if (alg == "aldousBroder") {
     mazeAlg = {
@@ -193,7 +201,7 @@ mazeInit = () => {
         mazeAlg.currentCell
       )
       maze.draw(ctx);
-      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
   }
 

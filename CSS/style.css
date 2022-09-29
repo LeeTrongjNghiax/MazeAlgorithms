@@ -1,6 +1,6 @@
 :root {
-  --cvSide: 700px;
-  --controllerWidth: 600px;
+  --cvSide: 400px;
+  --controllerWidth: 400px;
 }
 html {
   background-color: #000000;
@@ -66,3 +66,7 @@ button.newMaze {
 button.startStop { background-color: blue; }
 button.restart { background-color: red; }
 button.tracing { background-color: #505050; }
+
+option {
+  color: white;
+}

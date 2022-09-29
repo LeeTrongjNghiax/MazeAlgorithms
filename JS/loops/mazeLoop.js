@@ -6,6 +6,8 @@ loop = () => {
   cv.width = cvSide;
   cv.height = cvSide;
 
+  mazeGen();
+
   // maze_primAlgMazeGeneratorModified = primAlgMazeGeneratorModified(
   //   maze_primAlgMazeGeneratorModified.maze, 
   //   maze_primAlgMazeGeneratorModified.cells
@@ -95,5 +97,4 @@ loop = () => {
 
 mazeInit();
 loop();
-mazeGen();
 // playerJourney(solution);

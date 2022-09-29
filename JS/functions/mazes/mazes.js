@@ -65,9 +65,9 @@ mazeInit = () => {
       ul:nth-child(2) > 
       li:nth-child(1) > 
       input
-    `).value
+    `).value, 
   );
-  
+
   let result = solvingSystemsLinearEquations2Unknowns(
     [ [ (side + 1) / 2, (side - 1) / 2 ], 
       [ wallRatio, pathRatio] ], [ [cvSide], [0] ]
@@ -75,7 +75,7 @@ mazeInit = () => {
 
   pS = result.y;
   wS = result.x;
-  
+
   let m = generateMazeFullOfWalls({
     x: parseInt(getElement(`#mazeController > 
       div:nth-child(2) > 
@@ -99,89 +99,105 @@ mazeInit = () => {
     y: randomOdd(1, m.length - 2)
   };
   m[initCell.y][initCell.x] = P;
-  maze_primAlgMazeGeneratorModified = {
-    maze: m,
-    cells: getFrontierCells(m, initCell, 2)
+
+  let alg = getElement(`#mazeController > 
+    div:nth-child(2) >
+    ul:nth-child(1) >
+    li:nth-child(1) >
+    ul:nth-child(2) >
+    li:nth-child(1) >
+    select
+  `).value;
+
+  mazeAlg = null;
+  mazeGen = null;
+  clearTimeout(mazeGenTimeOut);
+
+  if (alg == "primModified") {
+    mazeAlg = {
+      maze: m,
+      cells: getFrontierCells(m, initCell, 2)
+    }
+    mazeGen = function() {
+      mazeAlg = primAlgMazeGeneratorModified(
+        mazeAlg.maze, 
+        mazeAlg.cells
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        mazeAlg.cells
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+    }
+  } else if (alg == "depthDirstSearch") {
+    mazeAlg = {
+      maze: m,
+      stack: [initCell]
+    }
+    mazeGen = function() {
+      mazeAlg = randomizedDepthFirstSearchMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.stack
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        mazeAlg.stack
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+    }
+  } else if (alg == "aldousBroder") {
+    mazeAlg = {
+      maze: m,
+      currentCell: initCell
+    }
+    mazeGen = function() {
+      mazeAlg = aldousBroderMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.currentCell
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        null,
+        mazeAlg.currentCell
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeGenTimeOut);
+    }
   }
 
-  let m2 = generateMazeFullOfWalls({
-    x: parseInt(getElement(`#mazeController > 
-      div:nth-child(2) > 
-      ul:nth-child(1) > 
-      li:nth-child(2) > 
-      ul:nth-child(2) > 
-      li:nth-child(1) > 
-      input
-    `).value),
-    y: parseInt(getElement(`#mazeController > 
-      div:nth-child(2) > 
-      ul:nth-child(1) > 
-      li:nth-child(2) > 
-      ul:nth-child(2) > 
-      li:nth-child(2) > 
-      input
-    `).value)
-  });
-  let initCell2 = {
-    x: randomOdd(1, m2[0].length - 2), 
-    y: randomOdd(1, m2.length - 2)
-  };
-  m2[initCell2.y][initCell2.x] = P;
-  maze2_randomizedDepthFirstSearchMazeGenerator = {
-    maze: m2,
-    stack: [initCell2]
-  }
-
-  let m3 = generateMazeFullOfWalls({
-    x: parseInt(getElement(`#mazeController > 
-      div:nth-child(2) > 
-      ul:nth-child(1) > 
-      li:nth-child(2) > 
-      ul:nth-child(2) > 
-      li:nth-child(1) > 
-      input
-    `).value),
-    y: parseInt(getElement(`#mazeController > 
-      div:nth-child(2) > 
-      ul:nth-child(1) > 
-      li:nth-child(2) > 
-      ul:nth-child(2) > 
-      li:nth-child(2) > 
-      input
-    `).value)
-  });
-  let initCell3 = {
-    x: randomOdd(1, m3[0].length - 2), 
-    y: randomOdd(1, m3.length - 2)
-  };
-  m3[initCell3.y][initCell3.x] = P;
-  maze3_aldousBroderMazeGenerator = {
-    maze: m3,
-    currentCell: initCell3
-  }
-
-  mazeGen = function(){
-    maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
-      maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
-      maze2_randomizedDepthFirstSearchMazeGenerator.stack
-    );
-  
-    maze2 = new Maze(
-      maze2_randomizedDepthFirstSearchMazeGenerator.maze,
-      pS, 
-      wS,
-      {
-        B: wallColor,
-        S: startColor,
-        E: endColor,
-        P: pathColor,
-        T: "green"
-      },
-      maze2_randomizedDepthFirstSearchMazeGenerator.stack
-    )
-    maze2.draw(ctx);
-    mazeGenTimeOut = setTimeout(mazeGen, 500);
-  }
+  mazeGen();
 }
 
 oppositeDirectionOf = direction => {

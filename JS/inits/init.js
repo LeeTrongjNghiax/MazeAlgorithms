@@ -17,34 +17,10 @@ let wallColor;
 let startColor;
 let endColor;
 
-let mazes = [];
+let maze;
 
-let maze_primAlgMazeGeneratorModified;
-let maze2_randomizedDepthFirstSearchMazeGenerator;
-let maze3_aldousBroderMazeGenerator;
+let mazeAlg;
 
 let pS, wS;
 
-let mazeGenTimeOut;
-let mazeGen = function(){
-  maze2_randomizedDepthFirstSearchMazeGenerator = randomizedDepthFirstSearchMazeGenerator(
-    maze2_randomizedDepthFirstSearchMazeGenerator.maze, 
-    maze2_randomizedDepthFirstSearchMazeGenerator.stack
-  );
-
-  maze2 = new Maze(
-    maze2_randomizedDepthFirstSearchMazeGenerator.maze,
-    pS, 
-    wS,
-    {
-      B: wallColor,
-      S: startColor,
-      E: endColor,
-      P: pathColor,
-      T: "green"
-    },
-    maze2_randomizedDepthFirstSearchMazeGenerator.stack
-  )
-  maze2.draw(ctx);
-  mazeGenTimeOut = setTimeout(mazeGen, 500);
-}
+let mazeGenTimeOut = 500;

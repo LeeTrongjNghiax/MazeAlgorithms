@@ -106,7 +106,6 @@ mazeInit = () => {
     x: randomOdd(1, m[0].length - 2), 
     y: randomOdd(1, m.length - 2)
   };
-  m[initCell.y][initCell.x] = P;
 
   let alg = getElement(`#mazeController > 
     div:nth-child(2) >
@@ -122,6 +121,7 @@ mazeInit = () => {
   clearTimeout(mazeGenTimeOut);
 
   if (alg == "primModified") {
+    m[initCell.y][initCell.x] = P;
     mazeAlg = {
       maze: m,
       cells: getFrontierCells(m, initCell, 2)
@@ -149,6 +149,7 @@ mazeInit = () => {
       mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
   } else if (alg == "depthDirstSearch") {
+    m[initCell.y][initCell.x] = P;
     mazeAlg = {
       maze: m,
       stack: [initCell]
@@ -176,6 +177,7 @@ mazeInit = () => {
       mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
   } else if (alg == "aldousBroder") {
+    m[initCell.y][initCell.x] = P;
     mazeAlg = {
       maze: m,
       currentCell: initCell
@@ -203,7 +205,96 @@ mazeInit = () => {
       maze.draw(ctx);
       mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
     }
-  }
+  } else if (alg == "binaryTree") {
+    mazeAlg = {
+      maze: m,
+      currentCell: {x: 1, y: 1}
+    }
+    mazeGen = function() {
+      mazeAlg = binaryTreeMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.currentCell
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        null,
+        mazeAlg.currentCell
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
+    }
+  } else if (alg == "sideWinder") {
+    mazeAlg = {
+      maze: m,
+      runSet: [{x: 1, y: 1}]
+    }
+    mazeGen = function() {
+      mazeAlg = sideWinderMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.runSet
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        null,
+        mazeAlg.runSet
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
+    }
+  } else if (alg == "huntAndKil") {
+    m[initCell.y][initCell.x] = P;
+    mazeAlg = {
+      maze: m,
+      stack: [initCell]
+    }
+    mazeAlg = {
+      maze: m,
+      currentCell: initCell
+    }
+    mazeGen = function() {
+      mazeAlg = huntAndKillMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.currentCell
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        null,
+        mazeAlg.currentCell
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
+    }
+  } 
 
   mazeGen();
 }

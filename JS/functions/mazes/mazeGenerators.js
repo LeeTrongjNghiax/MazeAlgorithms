@@ -139,23 +139,20 @@ binaryTreeMazeGenerator = (maze, currentCell) => {
   } else
   if (currentCell.x < maze[0].length - 2 &&
       currentCell.y == 1) {
-    // if (leftOrTop != 0)
-      maze[currentCell.y][currentCell.x - 1] = P;
+    maze[currentCell.y][currentCell.x - 1] = P;
     obj.x = currentCell.x + 2;
     obj.y = currentCell.y;
   } else
   if (currentCell.x == maze[0].length - 2 &&
       currentCell.y == 1) {
-    // if (leftOrTop != 0)
-      maze[currentCell.y][currentCell.x - 1] = P;
+    maze[currentCell.y][currentCell.x - 1] = P;
     obj.x = 1;
     obj.y = currentCell.y + 2;
   } else
 
   if (currentCell.x == 1 &&
       currentCell.y < maze.length - 2) {
-    // if (leftOrTop != 1)
-      maze[currentCell.y - 1][currentCell.x] = P;
+    maze[currentCell.y - 1][currentCell.x] = P;
     obj.x = currentCell.x + 2;
     obj.y = currentCell.y;
   } else
@@ -180,8 +177,7 @@ binaryTreeMazeGenerator = (maze, currentCell) => {
 
   if (currentCell.x == 1 &&
       currentCell.y == maze.length - 2) {
-    // if (leftOrTop != 1)
-      maze[currentCell.y - 1][currentCell.x] = P;
+    maze[currentCell.y - 1][currentCell.x] = P;
     obj.x = currentCell.x + 2;
     obj.y = currentCell.y;
   } else
@@ -241,54 +237,83 @@ huntAndKillMazeGenerator = (maze, currentCell) => {
   return {maze, currentCell};
 }
 
-// Not done yet
 sideWinderMazeGenerator = (maze, runSet) => {
   if (runSet.length == 0) return {maze: maze, runSet: []};
 
   let pathRight = randomInt(0, 1);
-  let currentCell = runSet.pop();
+  let currentCell = runSet[runSet.length - 1];
  
+  maze[currentCell.y][currentCell.x] = P; 
+
+  if (currentCell.x < maze[0].length - 2 &&
+      currentCell.y == 1) {
+    maze[currentCell.y][currentCell.x + 1] = P;
+    runSet.push({x: currentCell.x + 2, y: currentCell.y});
+  } else
+
+  if (currentCell.x == maze[0].length - 2 &&
+      currentCell.y == 1) {
+    runSet = [];
+    runSet.push({x: 1, y: currentCell.y + 2});
+  } else
+
   if (currentCell.x < maze[0].length - 2 &&
       currentCell.y < maze.length - 2) {
     if (pathRight == 1) {
       maze[currentCell.y][currentCell.x + 1] = P;
-      runSet.push({x: currentCell.x + 1, y: currentCell.y}); 
+      runSet.push({x: currentCell.x + 2, y: currentCell.y}); 
     } else {
-      let randomIndex = randomInt(0, runSet.length);
-      currentCell = runSet[randomIndex];
-      maze[currentCell.y + 1][currentCell.x] = P;
+      let randomIndex = randomInt(0, runSet.length - 1);
+      randomCell = runSet[randomIndex];
+      maze[randomCell.y - 1][randomCell.x] = P;
       runSet = [];
-      runSet.push({x: currentCell.x, y: currentCell.y + 1})
+      runSet.push({x: currentCell.x + 2, y: currentCell.y})
     }
-
-  } else if (currentCell.x == maze[0].length - 2 &&
-             currentCell.y < maze.length - 2) {
-    let randomIndex = randomInt(0, runSet.length);
+  } else
+  if (currentCell.x == maze[0].length - 2 &&
+      currentCell.y < maze.length - 2) {
+    let randomIndex = randomInt(0, runSet.length - 1);
     currentCell = runSet[randomIndex];
-    maze[currentCell.y + 1][currentCell.x] = P;
+    maze[currentCell.y - 1][currentCell.x] = P;
     runSet = [];
-    runSet.push({x: currentCell.x, y: currentCell.y + 1})
+    runSet.push({x: 1, y: currentCell.y + 2})
+  } else
 
-  } else if (currentCell.x < maze[0].length - 2 &&
-            currentCell.y == maze.length - 2) {
+  if (currentCell.x < maze[0].length - 2 &&
+      currentCell.y == maze.length - 2) {
     if (pathRight == 1) {
       maze[currentCell.y][currentCell.x + 1] = P;
-      runSet.push({x: currentCell.x + 1, y: currentCell.y}); 
+      runSet.push({x: currentCell.x + 2, y: currentCell.y}); 
+    } else {
+      let randomIndex = randomInt(0, runSet.length - 1);
+      randomCell = runSet[randomIndex];
+      maze[randomCell.y - 1][randomCell.x] = P;
+      runSet = [];
+      runSet.push({x: currentCell.x + 2, y: currentCell.y})
     }
-    
-  } else if (currentCell.x == maze[0].length - 2 &&
-            currentCell.y == maze.length - 2) {
+  } else
+
+  if (currentCell.x == maze[0].length - 2 &&
+      currentCell.y == maze.length - 2) {
+    let randomIndex = randomInt(0, runSet.length - 1);
+    currentCell = runSet[randomIndex];
+    maze[currentCell.y - 1][currentCell.x] = P;
     runSet = [];
-  } 
+  }
+
   return {maze, runSet};
 }
 
 // Not done yet
-ellerMazeGenerator = (maze, runSet) => {
-
+ellerMazeGenerator = (maze, set, row) => {
+  let count = 0;
+  for (let i = 1; i < maze[row].length; i += 2) {
+    set[set.length] = [{x: i, y: row}];
+  }
+  return {maze, set};
 }
 
 // Not done yet
-krúkalMazeGenerator = (maze, runSet) => {
+kruskalMazeGenerator = (maze, runSet) => {
 
 }

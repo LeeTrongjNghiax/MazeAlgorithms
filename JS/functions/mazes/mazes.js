@@ -255,8 +255,53 @@ mazeInit = () => {
           P: pathColor,
           T: "green"
         },
-        null,
         mazeAlg.runSet
+      )
+      maze.draw(ctx);
+      mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
+    }
+  } else if (alg == "eller") {
+    mazeAlg = {
+      maze: generateMazeFullOfWallsWithCells({
+        x: parseInt(getElement(`#mazeController > 
+          div:nth-child(2) > 
+          ul:nth-child(1) > 
+          li:nth-child(2) > 
+          ul:nth-child(2) > 
+          li:nth-child(1) > 
+          input
+        `).value),
+        y: parseInt(getElement(`#mazeController > 
+          div:nth-child(2) > 
+          ul:nth-child(1) > 
+          li:nth-child(2) > 
+          ul:nth-child(2) > 
+          li:nth-child(2) > 
+          input
+        `).value)
+      }),
+      set: [],
+      row: 1
+    }
+    mazeGen = function() {
+      mazeAlg = ellerMazeGenerator(
+        mazeAlg.maze, 
+        mazeAlg.set,
+        mazeAlg.row
+      );
+    
+      maze = new Maze(
+        mazeAlg.maze,
+        pS, 
+        wS,
+        {
+          B: wallColor,
+          S: startColor,
+          E: endColor,
+          P: pathColor,
+          T: "green"
+        },
+        mazeAlg.set
       )
       maze.draw(ctx);
       mazeGenTimeOut = setTimeout(mazeGen, mazeAlgSpeed);
